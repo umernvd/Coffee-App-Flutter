@@ -41,7 +41,7 @@ class DetailScreen extends StatelessWidget {
         ),
       ),
       // 3. Fixed Bottom Bar
-      bottomNavigationBar: BottomPriceBar(price: coffee.price),
+      bottomNavigationBar: BottomPriceBar(coffee: coffee),
     );
   }
 }
