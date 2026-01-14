@@ -1,87 +1,103 @@
+import 'dart:async'; // Required for Timer
 import 'package:flutter/material.dart';
-import './home_screen.dart';
-import '../widgets/heading_text.dart';
-import '../widgets/sub_heading_text.dart';
-import '../widgets/custom_button.dart';
+import '../models/onboarding_item.dart';
+import '../widgets/onboarding/slide_content.dart';
+import '../widgets/onboarding/progress_indicator.dart';
+import '../widgets/custom_button.dart'; // Reuse your existing button
+import 'home_screen.dart'; // To navigate away
 
-class OnboardingScreen extends StatelessWidget {
+class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    // screen height to size the image proportionally
-    final screenHeight = MediaQuery.of(context).size.height;
+  State<OnboardingScreen> createState() => _OnboardingScreenState();
+}
 
+class _OnboardingScreenState extends State<OnboardingScreen> {
+  // Controller to handle page swipes programmatically
+  final PageController _pageController = PageController();
+  
+  int _currentIndex = 0;
+  Timer? _timer;
+
+  @override
+  void initState() {
+    super.initState();
+    _startAutoScroll();
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel(); // Always cancel timers to prevent memory leaks
+    _pageController.dispose();
+    super.dispose();
+  }
+
+  // Logic to auto-scroll every 3 seconds
+  void _startAutoScroll() {
+    _timer = Timer.periodic(const Duration(seconds: 3), (timer) {
+      if (_currentIndex < onboardingData.length - 1) {
+        _currentIndex++;
+      } else {
+        _currentIndex = 0; // Loop back to start
+      }
+
+      // Animate to the next page
+      _pageController.animateToPage(
+        _currentIndex,
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.easeInOut,
+      );
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black, // Fallback background
+      backgroundColor: Colors.black,
       body: Stack(
         children: [
-          // Background Image (Top 60-65% of screen)
-          Positioned(
-            top: 0,
-            left: 0,
-            right: 0,
-            height: screenHeight * 0.65, // Takes up top 65%
-            child: Image.asset('assets/onboarding.png', fit: BoxFit.cover),
+          // 1. The Carousel
+          PageView.builder(
+            controller: _pageController,
+            itemCount: onboardingData.length,
+            onPageChanged: (index) {
+              setState(() {
+                _currentIndex = index;
+              });
+            },
+            itemBuilder: (context, index) {
+              return SlideContent(item: onboardingData[index]);
+            },
           ),
 
-          // Black Gradient/Solid Overlay (Bottom part)
+          // 2. Bottom UI Section (Progress Bar + Button)
           Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: Container(
-              height: screenHeight * 0.45, // overlaps image slightly
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    Colors.transparent,
-                    Color(0xFF050505),
-                    Color(0xFF050505),
-                  ],
-                  stops: [0.0, 0.2, 1.0], // Controls the fade
+            bottom: 40,
+            left: 24,
+            right: 24,
+            child: Column(
+              children: [
+                // Progress Indicator
+                OnboardingProgressIndicator(
+                  activeIndex: _currentIndex,
+                  totalCount: onboardingData.length,
                 ),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    // Title
-                    const HeadingText(
-                      text: "Fall in Love with Coffee in Blissful Delight!",
-                    ),
-
-                    const SizedBox(height: 8),
-
-                    // Subtitle
-                    const SubHeadingText(
-                      text:
-                          "Welcome to our cozy coffee corner, where every cup is a delightful for you.",
-                    ),
-
-                    const SizedBox(height: 32),
-
-                    // Button
-                    CustomButton(
-                      text: "Get Started",
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const HomeScreen(),
-                          ),
-                        );
-                      },
-                    ),
-
-                    // Spacing for bottom safe area (home indicator)
-                    const SizedBox(height: 40),
-                  ],
+                
+                const SizedBox(height: 32),
+                
+                // Get Started Button
+                CustomButton(
+                  text: "Get Started",
+                  onPressed: () {
+                    // Navigate to Home
+                    Navigator.pushReplacement(
+                      context, 
+                      MaterialPageRoute(builder: (context) => const HomeScreen()),
+                    );
+                  },
                 ),
-              ),
+              ],
             ),
           ),
         ],

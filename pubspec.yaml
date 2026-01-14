@@ -11,6 +11,7 @@ dependencies:
     sdk: flutter
   google_fonts: ^7.0.1
   cupertino_icons: ^1.0.8
+  flutter_launcher_icons: ^0.13.1
 
 dev_dependencies:
   flutter_test:
@@ -23,3 +24,10 @@ flutter:
   # This enables everything inside the 'assets' folder
   assets:
     - assets/
+
+
+flutter_launcher_icons:
+  android: "ic_launcher"
+  ios: true
+  image_path: "assets/app_icon.png"
+  min_sdk_android: 21
