@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../models/onboarding_item.dart';
 import '../widgets/onboarding/slide_content.dart';
 import '../widgets/onboarding/progress_indicator.dart';
-import '../widgets/custom_button.dart'; // Reuse your existing button
-import 'home_screen.dart'; // To navigate away
+import '../widgets/custom_button.dart'; 
+import 'home_screen.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});

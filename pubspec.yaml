@@ -24,6 +24,7 @@ flutter:
   # This enables everything inside the 'assets' folder
   assets:
     - assets/
+    - assets/icons/
 
 
 flutter_launcher_icons:
