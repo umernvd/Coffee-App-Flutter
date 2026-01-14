@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../screens/delivery_screen.dart';
 
 class BottomOrderBar extends StatelessWidget {
   final double totalPrice;
@@ -7,10 +8,13 @@ class BottomOrderBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.fromLTRB(24, 16, 24, 30), // Extra bottom padding for iOS home bar
-      decoration: const BoxDecoration(
-        color: Colors.white,
-      ),
+      padding: const EdgeInsets.fromLTRB(
+        24,
+        16,
+        24,
+        30,
+      ), // Extra bottom padding for iOS home bar
+      decoration: const BoxDecoration(color: Colors.white),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -56,7 +60,14 @@ class BottomOrderBar extends StatelessWidget {
             width: double.infinity,
             height: 56,
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const DeliveryScreen(),
+                  ),
+                );
+              },
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFFC67C4E),
                 shape: RoundedRectangleBorder(
