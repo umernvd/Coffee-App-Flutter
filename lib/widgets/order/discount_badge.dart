@@ -15,7 +15,7 @@ class DiscountBadge extends StatelessWidget {
       ),
       child: Row(
         children: [
-          const Icon(Icons.discount, color: Color(0xFFC67C4E), size: 20),
+         Image.asset("assets/icons/discount.png", width: 16, height: 16),
           const SizedBox(width: 12),
           const Expanded(
             child: Text(
@@ -28,7 +28,7 @@ class DiscountBadge extends StatelessWidget {
               ),
             ),
           ),
-          Icon(Icons.arrow_forward_ios, size: 14, color: Colors.grey[800]),
+          
         ],
       ),
     );
