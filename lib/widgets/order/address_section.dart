@@ -1,7 +1,20 @@
 import 'package:flutter/material.dart';
 
 class AddressSection extends StatelessWidget {
-  const AddressSection({super.key});
+  final String addressTitle;
+  final String addressSubtitle;
+  final String note;
+  final VoidCallback onEditAddress;
+  final VoidCallback onAddNote;
+
+  const AddressSection({
+    super.key,
+    required this.addressTitle,
+    required this.addressSubtitle,
+    required this.note,
+    required this.onEditAddress,
+    required this.onAddNote,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -12,40 +25,43 @@ class AddressSection extends StatelessWidget {
         children: [
           const Text(
             "Delivery Address",
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w600,
-              color: Color(0xFF242424),
-              fontFamily: 'Sora',
-            ),
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Color(0xFF242424), fontFamily: 'Sora'),
           ),
           const SizedBox(height: 12),
-          const Text(
-            "Jl. Kpg Sutoyo",
-            style: TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w600,
-              color: Color(0xFF313131),
-              fontFamily: 'Sora',
-            ),
+          Text(
+            addressTitle,
+            style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Color(0xFF313131), fontFamily: 'Sora'),
           ),
           const SizedBox(height: 6),
-          const Text(
-            "Kpg. Sutoyo No. 620, Bilzen, Tanjungbalai.",
-            style: TextStyle(
-              fontSize: 12,
-              color: Color(0xFFA2A2A2),
-              fontFamily: 'Sora',
-            ),
+          Text(
+            addressSubtitle,
+            style: const TextStyle(fontSize: 12, color: Color(0xFFA2A2A2), fontFamily: 'Sora'),
           ),
           const SizedBox(height: 12),
           Row(
             children: [
-              _buildOutlineButton(Icons.edit_note, "Edit Address"),
+              GestureDetector(
+                onTap: onEditAddress,
+                child: _buildOutlineButton(Icons.edit_note, "Edit Address"),
+              ),
               const SizedBox(width: 8),
-              _buildOutlineButton(Icons.note_add_outlined, "Add Note"),
+              GestureDetector(
+                onTap: onAddNote,
+                child: _buildOutlineButton(
+                  Icons.note_add_outlined, 
+                  note.isEmpty ? "Add Note" : "Note Added"
+                ),
+              ),
             ],
           ),
+          // Show the note if it exists
+          if (note.isNotEmpty) ...[
+            const SizedBox(height: 8),
+            Text(
+              "Note: $note",
+              style: const TextStyle(fontSize: 12, color: Color(0xFFC67C4E), fontFamily: 'Sora', fontStyle: FontStyle.italic),
+            )
+          ]
         ],
       ),
     );
@@ -65,11 +81,7 @@ class AddressSection extends StatelessWidget {
           const SizedBox(width: 4),
           Text(
             text,
-            style: const TextStyle(
-              fontSize: 12,
-              color: Color(0xFF313131),
-              fontFamily: 'Sora',
-            ),
+            style: const TextStyle(fontSize: 12, color: Color(0xFF313131), fontFamily: 'Sora'),
           ),
         ],
       ),

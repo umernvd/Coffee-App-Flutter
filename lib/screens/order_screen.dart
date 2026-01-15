@@ -7,16 +7,57 @@ import '../widgets/order/discount_badge.dart';
 import '../widgets/order/payment_summary.dart';
 import '../widgets/order/bottom_order_bar.dart';
 
-class OrderScreen extends StatelessWidget {
+class OrderScreen extends StatefulWidget {
   final Coffee coffee;
   const OrderScreen({super.key, required this.coffee});
 
   @override
-  Widget build(BuildContext context) {
-    // Basic safe parsing of price
-    final double itemPrice = double.tryParse(coffee.price) ?? 0.0;
-    final double totalPrice = itemPrice + 1.0; // +1.0 for delivery fee
+  State<OrderScreen> createState() => _OrderScreenState();
+}
 
+class _OrderScreenState extends State<OrderScreen> {
+  // 1. STATE VARIABLES
+  int quantity = 1;
+  String address = "Jl. Kpg Sutoyo";
+  String fullAddress = "Kpg. Sutoyo No. 620, Bilzen, Tanjungbalai.";
+  String note = ""; // Empty by default
+
+  // 2. CALCULATE PRICE LOGIC
+  double get itemPrice => double.tryParse(widget.coffee.price) ?? 0.0;
+  double get deliveryFee => 1.0;
+  double get totalPrice => (itemPrice * quantity) + deliveryFee;
+
+  // 3. DIALOG LOGIC (For editing Address or Note)
+  void _showEditDialog(String title, String currentValue, Function(String) onSave) {
+    TextEditingController controller = TextEditingController(text: currentValue);
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(title, style: const TextStyle(fontFamily: 'Sora')),
+        content: TextField(
+          controller: controller,
+          decoration: const InputDecoration(border: OutlineInputBorder()),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text("Cancel", style: TextStyle(color: Colors.grey)),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              onSave(controller.text);
+              Navigator.pop(context);
+            },
+            style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFFC67C4E)),
+            child: const Text("Save", style: TextStyle(color: Colors.white)),
+          ),
+        ],
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF9F9F9),
       appBar: AppBar(
@@ -29,25 +70,51 @@ class OrderScreen extends StatelessWidget {
         ),
         title: const Text(
           "Order",
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
-            color: Color(0xFF242424),
-            fontFamily: 'Sora',
-          ),
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: Color(0xFF242424), fontFamily: 'Sora'),
         ),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
             const DeliveryToggle(),
-            const AddressSection(),
+            
+            // 4. PASS STATE TO WIDGETS
+            AddressSection(
+              addressTitle: address,
+              addressSubtitle: fullAddress,
+              note: note,
+              onEditAddress: () {
+                _showEditDialog("Edit Address", fullAddress, (val) {
+                  setState(() => fullAddress = val);
+                });
+              },
+              onAddNote: () {
+                _showEditDialog("Add Note", note, (val) {
+                  setState(() => note = val);
+                });
+              },
+            ),
+            
             const Divider(height: 30, thickness: 1, color: Color(0xFFEAEAEA)),
-            OrderItemCard(coffee: coffee),
-            const Divider(height: 30, thickness: 4, color: Color(0xFFF4F4F4)), // Thicker divider
+            
+            OrderItemCard(
+              coffee: widget.coffee,
+              quantity: quantity,
+              onIncrement: () => setState(() => quantity++),
+              onDecrement: () {
+                if (quantity > 1) setState(() => quantity--);
+              },
+            ),
+            
+            const Divider(height: 30, thickness: 4, color: Color(0xFFF4F4F4)),
             const DiscountBadge(),
-            PaymentSummary(itemPrice: itemPrice),
-            const SizedBox(height: 10), // Space for bottom bar
+            
+            PaymentSummary(
+              itemPrice: itemPrice * quantity, // Dynamic Subtotal
+              deliveryFee: deliveryFee,
+            ),
+            
+            const SizedBox(height: 20),
           ],
         ),
       ),
