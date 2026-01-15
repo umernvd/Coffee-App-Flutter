@@ -18,9 +18,9 @@ class OrderScreen extends StatefulWidget {
 class _OrderScreenState extends State<OrderScreen> {
   // 1. STATE VARIABLES
   int quantity = 1;
-  String address = "Jl. Kpg Sutoyo";
-  String fullAddress = "Kpg. Sutoyo No. 620, Bilzen, Tanjungbalai.";
-  String note = ""; // Empty by default
+  // Combine title/subtitle into one main address variable
+  String deliveryAddress = "Jl. Kpg Sutoyo No. 620, Bilzen, Tanjungbalai."; 
+  String note = "No notes added"; // Default text for the note section
 
   // 2. CALCULATE PRICE LOGIC
   double get itemPrice => double.tryParse(widget.coffee.price) ?? 0.0;
@@ -78,14 +78,13 @@ class _OrderScreenState extends State<OrderScreen> {
           children: [
             const DeliveryToggle(),
             
-            // 4. PASS STATE TO WIDGETS
+            // 4. UPDATED ADDRESS SECTION CALL
             AddressSection(
-              addressTitle: address,
-              addressSubtitle: fullAddress,
-              note: note,
+              address: deliveryAddress, // Maps to Bold Text
+              note: note,               // Maps to Grey Text below it
               onEditAddress: () {
-                _showEditDialog("Edit Address", fullAddress, (val) {
-                  setState(() => fullAddress = val);
+                _showEditDialog("Edit Address", deliveryAddress, (val) {
+                  setState(() => deliveryAddress = val);
                 });
               },
               onAddNote: () {
