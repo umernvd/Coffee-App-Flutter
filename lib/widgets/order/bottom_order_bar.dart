@@ -1,35 +1,42 @@
 import 'package:flutter/material.dart';
-import '../../screens/delivery_screen.dart';
 
 class BottomOrderBar extends StatelessWidget {
   final double totalPrice;
-  final String deliveryAddress;
+  final VoidCallback onOrderPress; // <--- Changed from 'deliveryAddress' string
+
   const BottomOrderBar({
-    super.key,
-    required this.totalPrice,
-    required this.deliveryAddress,
+    super.key, 
+    required this.totalPrice, 
+    required this.onOrderPress // <--- Require this function
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.fromLTRB(
-        24,
-        16,
-        24,
-        30,
-      ), // Extra bottom padding for iOS home bar
-      decoration: const BoxDecoration(color: Colors.white),
+      padding: const EdgeInsets.fromLTRB(24, 16, 24, 30),
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(24),
+          topRight: Radius.circular(24),
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black12,
+            blurRadius: 10,
+            spreadRadius: 1,
+          )
+        ],
+      ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          // Wallet Row
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Row(
                 children: [
-                  Image.asset("assets/icons/wallet.png", width: 18, height: 18),
+                  const Icon(Icons.wallet, color: Color(0xFFC67C4E), size: 24),
                   const SizedBox(width: 12),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -60,20 +67,12 @@ class BottomOrderBar extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 16),
-          // Order Button
+          
           SizedBox(
             width: double.infinity,
             height: 56,
             child: ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) =>
-                        DeliveryScreen(deliveryAddress: deliveryAddress),
-                  ),
-                );
-              },
+              onPressed: onOrderPress, // <--- Use the passed function
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFFC67C4E),
                 shape: RoundedRectangleBorder(
