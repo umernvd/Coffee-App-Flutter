@@ -102,15 +102,4 @@ class InfoSection extends StatelessWidget {
       ),
     );
   }
-
-  Widget _buildFeatureIcon(IconData icon) {
-    return Container(
-      padding: const EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        color: const Color(0xFFF9F9F9),
-        borderRadius: BorderRadius.circular(14),
-      ),
-      child: Icon(icon, color: const Color(0xFFC67C4E), size: 24),
-    );
-  }
 }
