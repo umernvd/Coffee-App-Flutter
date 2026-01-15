@@ -19,7 +19,7 @@ class _OrderScreenState extends State<OrderScreen> {
   // 1. STATE VARIABLES
   int quantity = 1;
   // Combine title/subtitle into one main address variable
-  String deliveryAddress = "Jl. Kpg Sutoyo No. 620, Bilzen, Tanjungbalai."; 
+  String deliveryAddress = "";
   String note = "No notes added"; // Default text for the note section
 
   // 2. CALCULATE PRICE LOGIC
@@ -28,8 +28,14 @@ class _OrderScreenState extends State<OrderScreen> {
   double get totalPrice => (itemPrice * quantity) + deliveryFee;
 
   // 3. DIALOG LOGIC (For editing Address or Note)
-  void _showEditDialog(String title, String currentValue, Function(String) onSave) {
-    TextEditingController controller = TextEditingController(text: currentValue);
+  void _showEditDialog(
+    String title,
+    String currentValue,
+    Function(String) onSave,
+  ) {
+    TextEditingController controller = TextEditingController(
+      text: currentValue,
+    );
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -48,7 +54,9 @@ class _OrderScreenState extends State<OrderScreen> {
               onSave(controller.text);
               Navigator.pop(context);
             },
-            style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFFC67C4E)),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: const Color(0xFFC67C4E),
+            ),
             child: const Text("Save", style: TextStyle(color: Colors.white)),
           ),
         ],
@@ -65,23 +73,32 @@ class _OrderScreenState extends State<OrderScreen> {
         elevation: 0,
         centerTitle: true,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new, color: Color(0xFF242424), size: 20),
+          icon: const Icon(
+            Icons.arrow_back_ios_new,
+            color: Color(0xFF242424),
+            size: 20,
+          ),
           onPressed: () => Navigator.pop(context),
         ),
         title: const Text(
           "Order",
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: Color(0xFF242424), fontFamily: 'Sora'),
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+            color: Color(0xFF242424),
+            fontFamily: 'Sora',
+          ),
         ),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
             const DeliveryToggle(),
-            
+
             // 4. UPDATED ADDRESS SECTION CALL
             AddressSection(
               address: deliveryAddress, // Maps to Bold Text
-              note: note,               // Maps to Grey Text below it
+              note: note, // Maps to Grey Text below it
               onEditAddress: () {
                 _showEditDialog("Edit Address", deliveryAddress, (val) {
                   setState(() => deliveryAddress = val);
@@ -93,9 +110,9 @@ class _OrderScreenState extends State<OrderScreen> {
                 });
               },
             ),
-            
+
             const Divider(height: 30, thickness: 1, color: Color(0xFFEAEAEA)),
-            
+
             OrderItemCard(
               coffee: widget.coffee,
               quantity: quantity,
@@ -104,20 +121,23 @@ class _OrderScreenState extends State<OrderScreen> {
                 if (quantity > 1) setState(() => quantity--);
               },
             ),
-            
+
             const Divider(height: 30, thickness: 4, color: Color(0xFFF4F4F4)),
             const DiscountBadge(),
-            
+
             PaymentSummary(
               itemPrice: itemPrice * quantity, // Dynamic Subtotal
               deliveryFee: deliveryFee,
             ),
-            
+
             const SizedBox(height: 20),
           ],
         ),
       ),
-      bottomNavigationBar: BottomOrderBar(totalPrice: totalPrice),
+      bottomNavigationBar: BottomOrderBar(
+        totalPrice: totalPrice,
+        deliveryAddress: deliveryAddress,
+      ),
     );
   }
 }

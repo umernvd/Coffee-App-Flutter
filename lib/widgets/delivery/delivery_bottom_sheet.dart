@@ -4,14 +4,17 @@ import 'courier_badge.dart';
 import 'courier_profile.dart';
 
 class DeliveryBottomSheet extends StatelessWidget {
-  const DeliveryBottomSheet({super.key});
+  // 1. Add variable
+  final String address;
+
+  const DeliveryBottomSheet({super.key, required this.address});
 
   @override
   Widget build(BuildContext context) {
     return Align(
       alignment: Alignment.bottomCenter,
       child: Container(
-        height: 325, // Fixed height per design aspect ratio
+        height: 310, 
         width: double.infinity,
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
         decoration: const BoxDecoration(
@@ -23,7 +26,6 @@ class DeliveryBottomSheet extends StatelessWidget {
         ),
         child: Column(
           children: [
-            // Handle Bar
             Container(
               width: 44,
               height: 5,
@@ -33,7 +35,6 @@ class DeliveryBottomSheet extends StatelessWidget {
                 borderRadius: BorderRadius.circular(2.5),
               ),
             ),
-            // Header Text
             const Text(
               "10 minutes left",
               style: TextStyle(
@@ -45,17 +46,19 @@ class DeliveryBottomSheet extends StatelessWidget {
             ),
             const SizedBox(height: 6),
             RichText(
-              text: const TextSpan(
-                style: TextStyle(
+              text: TextSpan(
+                style: const TextStyle(
                   fontSize: 12,
                   color: Color(0xFFA2A2A2),
                   fontFamily: 'Sora',
                 ),
                 children: [
-                  TextSpan(text: "Delivery to "),
+                  const TextSpan(text: "Delivery to "),
+                  
+                  // 2. Use the dynamic address here
                   TextSpan(
-                    text: "Jl. Kpg Sutoyo",
-                    style: TextStyle(
+                    text: address, // <--- CHANGED
+                    style: const TextStyle(
                       fontWeight: FontWeight.w600,
                       color: Color(0xFF242424),
                     ),
@@ -64,7 +67,6 @@ class DeliveryBottomSheet extends StatelessWidget {
               ),
             ),
             
-            // Widgets
             const DeliveryProgressBar(),
             const CourierBadge(),
             const CourierProfile(),

@@ -3,7 +3,12 @@ import '../../screens/delivery_screen.dart';
 
 class BottomOrderBar extends StatelessWidget {
   final double totalPrice;
-  const BottomOrderBar({super.key, required this.totalPrice});
+  final String deliveryAddress;
+  const BottomOrderBar({
+    super.key,
+    required this.totalPrice,
+    required this.deliveryAddress,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +69,8 @@ class BottomOrderBar extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const DeliveryScreen(),
+                    builder: (context) =>
+                        DeliveryScreen(deliveryAddress: deliveryAddress),
                   ),
                 );
               },
