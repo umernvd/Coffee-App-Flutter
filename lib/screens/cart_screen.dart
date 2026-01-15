@@ -1,3 +1,4 @@
+import 'package:coffee_app/screens/order_screen.dart';
 import 'package:flutter/material.dart';
 import '../services/cart_service.dart';
 
@@ -15,29 +16,45 @@ class CartScreen extends StatelessWidget {
         elevation: 0,
         centerTitle: true,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new, color: Color(0xFF242424), size: 20),
+          icon: const Icon(
+            Icons.arrow_back_ios_new,
+            color: Color(0xFF242424),
+            size: 20,
+          ),
           onPressed: () => Navigator.pop(context),
         ),
         title: const Text(
           "Cart",
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: Color(0xFF242424), fontFamily: 'Sora'),
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+            color: Color(0xFF242424),
+            fontFamily: 'Sora',
+          ),
         ),
       ),
       body: ValueListenableBuilder<List<CartItem>>(
         valueListenable: cartService.cartItems,
         builder: (context, items, _) {
-          
           // 1. EMPTY STATE
           if (items.isEmpty) {
             return Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.shopping_bag_outlined, size: 80, color: Colors.grey[400]),
+                  Icon(
+                    Icons.shopping_bag_outlined,
+                    size: 80,
+                    color: Colors.grey[400],
+                  ),
                   const SizedBox(height: 16),
                   const Text(
                     "No item in your cart",
-                    style: TextStyle(fontSize: 16, color: Colors.grey, fontFamily: 'Sora'),
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.grey,
+                      fontFamily: 'Sora',
+                    ),
                   ),
                 ],
               ),
@@ -65,7 +82,12 @@ class CartScreen extends StatelessWidget {
                           // Image
                           ClipRRect(
                             borderRadius: BorderRadius.circular(12),
-                            child: Image.asset(item.coffee.imageUrl, width: 60, height: 60, fit: BoxFit.cover),
+                            child: Image.asset(
+                              item.coffee.imageUrl,
+                              width: 60,
+                              height: 60,
+                              fit: BoxFit.cover,
+                            ),
                           ),
                           const SizedBox(width: 12),
                           // Details
@@ -75,12 +97,21 @@ class CartScreen extends StatelessWidget {
                               children: [
                                 Text(
                                   item.coffee.name,
-                                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600, fontFamily: 'Sora'),
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600,
+                                    fontFamily: 'Sora',
+                                  ),
                                 ),
                                 const SizedBox(height: 4),
                                 Text(
                                   "\$ ${item.coffee.price}",
-                                  style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Color(0xFFC67C4E), fontFamily: 'Sora'),
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w600,
+                                    color: Color(0xFFC67C4E),
+                                    fontFamily: 'Sora',
+                                  ),
                                 ),
                               ],
                             ),
@@ -88,16 +119,26 @@ class CartScreen extends StatelessWidget {
                           // Counter
                           Row(
                             children: [
-                              _iconButton(Icons.remove, () => cartService.removeFromCart(item)),
+                              _iconButton(
+                                Icons.remove,
+                                () => cartService.removeFromCart(item),
+                              ),
                               const SizedBox(width: 12),
                               Text(
                                 "${item.quantity}",
-                                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600, fontFamily: 'Sora'),
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                  fontFamily: 'Sora',
+                                ),
                               ),
                               const SizedBox(width: 12),
-                              _iconButton(Icons.add, () => cartService.addToCart(item.coffee)),
+                              _iconButton(
+                                Icons.add,
+                                () => cartService.addToCart(item.coffee),
+                              ),
                             ],
-                          )
+                          ),
                         ],
                       ),
                     );
@@ -110,18 +151,35 @@ class CartScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(24),
                 decoration: const BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.only(topLeft: Radius.circular(24), topRight: Radius.circular(24)),
-                  boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 10, offset: Offset(0, -5))],
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(24),
+                    topRight: Radius.circular(24),
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black12,
+                      blurRadius: 10,
+                      offset: Offset(0, -5),
+                    ),
+                  ],
                 ),
                 child: Column(
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Text("Total Price", style: TextStyle(fontSize: 16, fontFamily: 'Sora')),
+                        const Text(
+                          "Total Price",
+                          style: TextStyle(fontSize: 16, fontFamily: 'Sora'),
+                        ),
                         Text(
                           "\$ ${cartService.getTotalPrice().toStringAsFixed(2)}",
-                          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: Color(0xFFC67C4E), fontFamily: 'Sora'),
+                          style: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w600,
+                            color: Color(0xFFC67C4E),
+                            fontFamily: 'Sora',
+                          ),
                         ),
                       ],
                     ),
@@ -131,13 +189,32 @@ class CartScreen extends StatelessWidget {
                       height: 56,
                       child: ElevatedButton(
                         onPressed: () {
-                          // Proceed to checkout logic here
+                          // Navigate to OrderScreen with the list of items
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => OrderScreen(
+                                cartItems: cartService
+                                    .cartItems
+                                    .value, // Pass the list!
+                              ),
+                            ),
+                          );
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color(0xFFC67C4E),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
                         ),
-                        child: const Text("Checkout", style: TextStyle(color: Colors.white, fontSize: 16, fontFamily: 'Sora')),
+                        child: const Text(
+                          "Checkout",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                            fontFamily: 'Sora',
+                          ),
+                        ),
                       ),
                     ),
                   ],

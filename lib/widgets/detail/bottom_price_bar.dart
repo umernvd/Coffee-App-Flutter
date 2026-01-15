@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../models/coffee_model.dart';
 import '../../screens/order_screen.dart';
 import '../custom_button.dart';
+import '../../services/cart_service.dart';
 
 class BottomPriceBar extends StatelessWidget {
   final Coffee coffee;
@@ -12,9 +13,7 @@ class BottomPriceBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
-      decoration: const BoxDecoration(
-        color: Colors.white,
-      ),
+      decoration: const BoxDecoration(color: Colors.white),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -24,7 +23,7 @@ class BottomPriceBar extends StatelessWidget {
             children: [
               const Text(
                 "Price",
-                
+
                 style: TextStyle(
                   fontSize: 14,
                   color: Color(0xFF9B9B9B),
@@ -43,15 +42,18 @@ class BottomPriceBar extends StatelessWidget {
             ],
           ),
           SizedBox(
-            width: 217, 
+            width: 217,
             child: CustomButton(
               text: "Buy Now",
               onPressed: () {
+                // Create a temporary single-item list for the "Buy Now" flow
+                final singleItemCart = [CartItem(coffee: coffee, quantity: 1)];
+
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    // Now this works because we have the 'coffee' object
-                    builder: (context) => OrderScreen(coffee: coffee), 
+                    builder: (context) =>
+                        OrderScreen(cartItems: singleItemCart),
                   ),
                 );
               },
