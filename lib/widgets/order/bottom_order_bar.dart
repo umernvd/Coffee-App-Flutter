@@ -24,7 +24,7 @@ class BottomOrderBar extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  const Icon(Icons.wallet, color: Color(0xFFC67C4E), size: 24),
+                  Image.asset("assets/icons/wallet.png", width: 18, height: 18),
                   const SizedBox(width: 12),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
