@@ -66,7 +66,7 @@ class InfoSection extends StatelessWidget {
                 children: [
                   Image.asset("assets/motorbike.png", width: 24, height: 24),
                   const SizedBox(width: 12),
-                  _buildFeatureIcon(Icons.coffee),
+                   Image.asset("assets/icons/bean.png", width: 24, height: 24),
                   const SizedBox(width: 12),
                   _buildFeatureIcon(Icons.water_drop), // Using water/milk icon
                 ],
