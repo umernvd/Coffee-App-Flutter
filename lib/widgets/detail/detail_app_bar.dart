@@ -23,12 +23,36 @@ class DetailAppBar extends StatelessWidget {
               color: const Color(0xFF2F2D2C),
             ),
           ),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.favorite_border, size: 24),
-          ),
+          const FavoriteButton(),
         ],
       ),
+    );
+  }
+}
+
+class FavoriteButton extends StatefulWidget {
+  const FavoriteButton({super.key});
+
+  @override
+  State<FavoriteButton> createState() => _FavoriteButtonState();
+}
+
+class _FavoriteButtonState extends State<FavoriteButton> {
+  bool isLiked = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      onPressed: () {
+        setState(() {
+          isLiked = !isLiked;
+        });
+      },
+      // Change color based on state
+      color: isLiked ? const Color(0xFFC67C4E) : Colors.black,
+      icon: isLiked 
+          ? const Icon(Icons.favorite) 
+          : const ImageIcon(AssetImage("assets/icons/heart2.png")),
     );
   }
 }
