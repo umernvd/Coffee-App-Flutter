@@ -4,10 +4,8 @@ import '../../screens/order_screen.dart';
 import '../custom_button.dart';
 
 class BottomPriceBar extends StatelessWidget {
-  // 1. Declare the Coffee object properly
   final Coffee coffee;
 
-  // 2. Removed redundant 'price' string. We just need the coffee object.
   const BottomPriceBar({super.key, required this.coffee});
 
   @override
@@ -16,18 +14,6 @@ class BottomPriceBar extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
       decoration: const BoxDecoration(
         color: Colors.white,
-        // 3. Restored design details (Rounded Top & Shadow)
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(24),
-          topRight: Radius.circular(24),
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black12,
-            blurRadius: 20,
-            spreadRadius: 1,
-          )
-        ],
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -38,7 +24,7 @@ class BottomPriceBar extends StatelessWidget {
             children: [
               const Text(
                 "Price",
-                // 4. Use offline TextStyle to prevent crashes
+                
                 style: TextStyle(
                   fontSize: 14,
                   color: Color(0xFF9B9B9B),
