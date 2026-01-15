@@ -54,7 +54,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      
       body: Stack(
         children: [
           // 1. The Carousel

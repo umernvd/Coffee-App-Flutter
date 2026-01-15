@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../models/coffee_model.dart';
 import '../../screens/detail_screen.dart';
+import '../../services/cart_service.dart';
 
 class CoffeeCard extends StatelessWidget {
   final Coffee coffee;
@@ -16,9 +17,7 @@ class CoffeeCard extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(
-            builder: (context) => DetailScreen(coffee: coffee),
-          ),
+          MaterialPageRoute(builder: (context) => DetailScreen(coffee: coffee)),
         );
       },
       child: Container(
@@ -28,7 +27,6 @@ class CoffeeCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
         ),
         padding: const EdgeInsets.all(4), // Padding inside the white card
-        
         // Wrap everything in a Column
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -60,7 +58,11 @@ class CoffeeCard extends StatelessWidget {
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        const Icon(Icons.star, color: Color(0xFFFBBE21), size: 10),
+                        const Icon(
+                          Icons.star,
+                          color: Color(0xFFFBBE21),
+                          size: 10,
+                        ),
                         const SizedBox(width: 4),
                         Text(
                           "${coffee.rating}",
@@ -69,14 +71,14 @@ class CoffeeCard extends StatelessWidget {
                             fontSize: 10,
                             fontWeight: FontWeight.bold,
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
                 ),
               ],
             ),
-            
+
             const SizedBox(height: 12),
 
             // Texts
@@ -103,13 +105,16 @@ class CoffeeCard extends StatelessWidget {
                 ],
               ),
             ),
-            
+
             // Pushes the price to the bottom if the column has extra height
             const Spacer(),
 
             // Price and Add Button
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 8.0,
+                vertical: 8.0,
+              ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -121,17 +126,36 @@ class CoffeeCard extends StatelessWidget {
                       color: const Color(0xFF2F2D2C),
                     ),
                   ),
-                  Container(
-                    padding: const EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFC67C4E),
-                      borderRadius: BorderRadius.circular(8),
+                  GestureDetector(
+                    onTap: () {
+                      // 1. Add to cart
+                      CartService().addToCart(coffee);
+
+                      // 2. Show feedback
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text("${coffee.name} added to cart!"),
+                          duration: const Duration(milliseconds: 800),
+                          backgroundColor: const Color(0xFFC67C4E),
+                        ),
+                      );
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFC67C4E),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: const Icon(
+                        Icons.add,
+                        color: Colors.white,
+                        size: 16,
+                      ),
                     ),
-                    child: const Icon(Icons.add, color: Colors.white, size: 16),
                   ),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),
