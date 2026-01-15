@@ -64,7 +64,7 @@ class InfoSection extends StatelessWidget {
               // Feature Icons (Delivery, Bean, Milk)
               Row(
                 children: [
-                  _buildFeatureIcon(Icons.delivery_dining),
+                  Image.asset("assets/motorbike.png", width: 24, height: 24),
                   const SizedBox(width: 12),
                   _buildFeatureIcon(Icons.coffee),
                   const SizedBox(width: 12),
