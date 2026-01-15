@@ -96,15 +96,6 @@ class InfoSection extends StatelessWidget {
                 color: const Color(0xFF9B9B9B),
                 height: 1.5,
               ),
-              children: [
-                TextSpan(
-                  text: " Read More",
-                  style: GoogleFonts.sora(
-                    color: const Color(0xFFC67C4E),
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ],
             ),
           ),
         ],
