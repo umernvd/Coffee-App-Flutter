@@ -1,10 +1,11 @@
 // ignore_for_file: deprecated_member_use
 
+import 'package:coffee_app/screens/detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import '../../models/coffee_model.dart';
-import '../../screens/detail_screen.dart';
-import '../../services/cart_service.dart';
+import '../../providers/cart_provider.dart';
 
 class CoffeeCard extends StatelessWidget {
   final Coffee coffee;
@@ -129,8 +130,7 @@ class CoffeeCard extends StatelessWidget {
                   GestureDetector(
                     onTap: () {
                       // 1. Add to cart
-                      CartService().addToCart(coffee);
-
+                      context.read<CartProvider>().addToCart(coffee);
                       // 2. Show feedback
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(

@@ -4,29 +4,32 @@ publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: ^3.10.4
+  sdk: '>=3.10.4 <4.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
-  google_fonts: ^7.0.1
-  cupertino_icons: ^1.0.8
-  flutter_launcher_icons: ^0.13.1
+  # Core Packages
+  provider: ^6.1.1          # State Management
+  google_fonts: ^6.1.0      # Typography
+  cupertino_icons: ^1.0.6   # iOS Icons
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^6.0.0
+  # Dev Tools
+  flutter_lints: ^4.0.0     # Linter
+  flutter_launcher_icons: ^0.13.1 # App Icon Generator
 
 flutter:
   uses-material-design: true
-  
-  # This enables everything inside the 'assets' folder
+
+  # Assets
   assets:
-    - assets/
-    - assets/icons/
+    - assets/               # Loads images like espresso.png
+    - assets/icons/         # Loads filter.png, search.png
 
-
+# App Icon Configuration
 flutter_launcher_icons:
   android: "ic_launcher"
   ios: true

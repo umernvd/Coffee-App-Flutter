@@ -1,23 +1,31 @@
 import 'package:flutter/material.dart';
-import 'screens/onboarding_screen.dart'; // Import the new screen
+import 'package:provider/provider.dart';
+import 'theme/app_theme.dart';
+import 'providers/cart_provider.dart';
+import 'providers/order_provider.dart';
+import 'screens/onboarding_screen.dart'; // Ensure this import exists
 
 void main() {
-  runApp(const CoffeeApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => CartProvider()),
+        ChangeNotifierProvider(create: (_) => OrderProvider()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
-class CoffeeApp extends StatelessWidget {
-  const CoffeeApp({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Coffee App',
-      debugShowCheckedModeBanner: false, // Removes the debug banner
-      theme: ThemeData(
-        // Setting the default scaffold color to black as per design theme
-        scaffoldBackgroundColor: const Color(0xFF050505),
-        useMaterial3: true,
-      ),
+      debugShowCheckedModeBanner: false,
+      theme: AppTheme.lightTheme, // Using our new centralized theme
       home: const OnboardingScreen(),
     );
   }

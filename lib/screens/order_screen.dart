@@ -1,6 +1,10 @@
-import 'dart:async';
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
-import '../services/cart_service.dart';
+import 'package:provider/provider.dart';
+// Keep generic model imports
+import '../providers/cart_provider.dart';
+import '../providers/order_provider.dart';
 import '../widgets/order/delivery_toggle.dart';
 import '../widgets/order/address_section.dart';
 import '../widgets/order/order_item_card.dart';
@@ -10,8 +14,7 @@ import '../widgets/order/bottom_order_bar.dart';
 import 'delivery_screen.dart';
 
 class OrderScreen extends StatefulWidget {
-  final List<CartItem> cartItems; 
-  
+  final List<CartItem> cartItems;
   const OrderScreen({super.key, required this.cartItems});
 
   @override
@@ -19,26 +22,13 @@ class OrderScreen extends StatefulWidget {
 }
 
 class _OrderScreenState extends State<OrderScreen> {
-  // Address State
-  String deliveryAddress = ""; 
-  String note = "No notes added";
-  bool showError = false;
-
-  // 1. CALCULATE TOTAL PRICE LOGIC
-  // We loop through all items to get the sum
-  double get itemPrice {
-    double total = 0.0;
-    for (var item in widget.cartItems) {
-      double price = double.tryParse(item.coffee.price) ?? 0.0;
-      total += (price * item.quantity);
-    }
-    return total;
+  @override
+  void initState() {
+    super.initState();
+    // Reset provider state when entering screen
+    Future.microtask(() => context.read<OrderProvider>().reset());
   }
 
-  double get deliveryFee => 1.0;
-  double get totalPrice => itemPrice + deliveryFee;
-
-  // 2. DIALOG LOGIC (Keep as is)
   void _showEditDialog(String title, String currentValue, Function(String) onSave) {
     TextEditingController controller = TextEditingController(
       text: currentValue == "Enter your delivery address" ? "" : currentValue
@@ -46,7 +36,7 @@ class _OrderScreenState extends State<OrderScreen> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text(title, style: const TextStyle(fontFamily: 'Sora')),
+        title: Text(title, style: Theme.of(context).textTheme.titleLarge),
         content: TextField(
           controller: controller,
           decoration: const InputDecoration(border: OutlineInputBorder(), hintText: "Type here..."),
@@ -61,48 +51,32 @@ class _OrderScreenState extends State<OrderScreen> {
               if (controller.text.isNotEmpty) onSave(controller.text);
               Navigator.pop(context);
             },
-            style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFFC67C4E)),
-            child: const Text("Save", style: TextStyle(color: Colors.white)),
+            child: const Text("Save"),
           ),
         ],
       ),
     );
   }
 
-  // 3. VALIDATION LOGIC
-  void _handleOrderPress() {
-    if (deliveryAddress.isEmpty || deliveryAddress == "Enter your delivery address") {
-      setState(() => showError = true);
-      Timer(const Duration(seconds: 3), () {
-        if (mounted) setState(() => showError = false);
-      });
-    } else {
-      // Clear cart after successful order (Optional but recommended)
-      // CartService().cartItems.value = []; 
-      
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => DeliveryScreen(deliveryAddress: deliveryAddress)),
-      );
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
+    // Consume the OrderProvider
+    final orderProvider = context.watch<OrderProvider>();
+    
+    // Calculate total dynamically
+    final double subtotal = widget.cartItems.fold(0.0, (sum, item) => sum + item.totalPrice);
+    final double finalTotal = subtotal + orderProvider.deliveryFee;
+
     return Scaffold(
-      backgroundColor: const Color(0xFFF9F9F9),
       appBar: AppBar(
-        backgroundColor: const Color(0xFFF9F9F9),
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 0,
         centerTitle: true,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new, color: Color(0xFF242424), size: 20),
+          icon: Icon(Icons.arrow_back_ios_new, color: Theme.of(context).primaryColor, size: 20),
           onPressed: () => Navigator.pop(context),
         ),
-        title: const Text(
-          "Order",
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: Color(0xFF242424), fontFamily: 'Sora'),
-        ),
+        title: Text("Order", style: Theme.of(context).textTheme.titleLarge),
       ),
       body: Stack(
         children: [
@@ -112,66 +86,71 @@ class _OrderScreenState extends State<OrderScreen> {
                 const DeliveryToggle(),
                 
                 AddressSection(
-                  address: deliveryAddress.isEmpty ? "Enter your delivery address" : deliveryAddress,
-                  note: note,
+                  address: orderProvider.address.isEmpty 
+                      ? "Enter your delivery address" 
+                      : orderProvider.address,
+                  note: orderProvider.note,
                   onEditAddress: () {
-                    _showEditDialog("Edit Address", deliveryAddress, (val) => setState(() => deliveryAddress = val));
+                    _showEditDialog("Edit Address", orderProvider.address, (val) => orderProvider.setAddress(val));
                   },
                   onAddNote: () {
-                    _showEditDialog("Add Note", note, (val) => setState(() => note = val));
+                    _showEditDialog("Add Note", orderProvider.note, (val) => orderProvider.setNote(val));
                   },
                 ),
                 
                 const Divider(height: 30, thickness: 1, color: Color(0xFFEAEAEA)),
                 
-                // 4. DYNAMIC LIST OF ITEMS
-                // Instead of one OrderItemCard, we map the list
+                // Render List of Items
                 ...widget.cartItems.map((item) {
                   return OrderItemCard(
                     coffee: item.coffee,
                     quantity: item.quantity,
-                    onIncrement: () {
-                      setState(() {
-                         item.quantity++; // Simple local update for visual feedback
-                         // NOTE: Ideally you should update CartService here too
-                      });
-                    },
-                    onDecrement: () {
-                      if (item.quantity > 1) {
-                        setState(() => item.quantity--);
-                      }
-                    },
+                    // Note: For cart items, we might want to update the GLOBAL cart provider,
+                    // but for this specific order flow, we can just update local visual state or navigation.
+                    // For simplicity in this phase, we disable editing quantity here or link it to CartProvider.
+                    onIncrement: () => context.read<CartProvider>().addToCart(item.coffee),
+                    onDecrement: () => context.read<CartProvider>().removeFromCart(item),
                   );
-                }), // .toList() is not needed with spread operator (...)
+                }),
                 
                 const Divider(height: 30, thickness: 4, color: Color(0xFFF4F4F4)),
                 const DiscountBadge(),
-                PaymentSummary(itemPrice: itemPrice, deliveryFee: deliveryFee),
+                
+                PaymentSummary(
+                  itemPrice: subtotal, 
+                  deliveryFee: orderProvider.deliveryFee
+                ),
+                const SizedBox(height: 10),
               ],
             ),
           ),
 
-          // Error Popup
+          // Error Overlay
           Positioned(
             top: 10, left: 24, right: 24,
             child: AnimatedOpacity(
-              opacity: showError ? 1.0 : 0.0,
+              opacity: orderProvider.showError ? 1.0 : 0.0,
               duration: const Duration(milliseconds: 300),
               child: IgnorePointer(
-                ignoring: !showError,
+                ignoring: !orderProvider.showError,
                 child: Container(
                   padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
                   decoration: BoxDecoration(
-                    color: const Color(0xFFC67C4E),
+                    color: Theme.of(context).primaryColor,
                     borderRadius: BorderRadius.circular(8),
-                    boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 10, offset: const Offset(0, 4))],
+                    boxShadow: [
+                      BoxShadow(color: Colors.black.withOpacity(0.2), blurRadius: 10, offset: const Offset(0, 4))
+                    ],
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      Icon(Icons.error_outline, color: Colors.white, size: 20),
-                      SizedBox(width: 8),
-                      Text("Add your delivery address", style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600, fontFamily: 'Sora')),
+                    children: [
+                      Icon(Icons.error_outline, color: Theme.of(context).colorScheme.onPrimary, size: 20),
+                      const SizedBox(width: 8),
+                      Text(
+                        "Add your delivery address",
+                        style: TextStyle(color: Theme.of(context).colorScheme.onPrimary, fontWeight: FontWeight.w600),
+                      ),
                     ],
                   ),
                 ),
@@ -181,8 +160,15 @@ class _OrderScreenState extends State<OrderScreen> {
         ],
       ),
       bottomNavigationBar: BottomOrderBar(
-        totalPrice: totalPrice,
-        onOrderPress: _handleOrderPress, 
+        totalPrice: finalTotal,
+        onOrderPress: () {
+          if (orderProvider.validateOrder()) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => DeliveryScreen(deliveryAddress: orderProvider.address)),
+            );
+          }
+        }, 
       ),
     );
   }

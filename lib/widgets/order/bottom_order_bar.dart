@@ -65,11 +65,7 @@ class BottomOrderBar extends StatelessWidget {
               onPressed: onOrderPress, // <--- Use the passed function
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFFC67C4E),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                elevation: 0,
-              ),
+                             ),
               child: const Text(
                 "Order",
                 style: TextStyle(
