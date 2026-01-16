@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import '../services/cart_service.dart'; // Import CartItem definition
+import '../services/cart_service.dart';
 import '../widgets/order/delivery_toggle.dart';
 import '../widgets/order/address_section.dart';
 import '../widgets/order/order_item_card.dart';
@@ -10,7 +10,6 @@ import '../widgets/order/bottom_order_bar.dart';
 import 'delivery_screen.dart';
 
 class OrderScreen extends StatefulWidget {
-  // CHANGED: Now accepts a list of items
   final List<CartItem> cartItems; 
   
   const OrderScreen({super.key, required this.cartItems});
@@ -148,7 +147,6 @@ class _OrderScreenState extends State<OrderScreen> {
                 const Divider(height: 30, thickness: 4, color: Color(0xFFF4F4F4)),
                 const DiscountBadge(),
                 PaymentSummary(itemPrice: itemPrice, deliveryFee: deliveryFee),
-                const SizedBox(height: 100), // Extra space for bottom bar
               ],
             ),
           ),

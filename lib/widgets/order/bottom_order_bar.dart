@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 class BottomOrderBar extends StatelessWidget {
   final double totalPrice;
-  final VoidCallback onOrderPress; // <--- Changed from 'deliveryAddress' string
+  final VoidCallback onOrderPress; 
 
   const BottomOrderBar({
     super.key, 
     required this.totalPrice, 
-    required this.onOrderPress // <--- Require this function
+    required this.onOrderPress, 
   });
 
   @override
@@ -16,17 +16,7 @@ class BottomOrderBar extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(24, 16, 24, 30),
       decoration: const BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(24),
-          topRight: Radius.circular(24),
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black12,
-            blurRadius: 10,
-            spreadRadius: 1,
-          )
-        ],
+       
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
