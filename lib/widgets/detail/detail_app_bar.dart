@@ -1,58 +1,49 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import '../../models/coffee_model.dart';
+import '../../providers/favorites_provider.dart'; // Import Provider
 
 class DetailAppBar extends StatelessWidget {
-  const DetailAppBar({super.key});
+  final Coffee coffee; // Add this
+
+  const DetailAppBar({super.key, required this.coffee}); // Add to constructor
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
+          // Back Button
           IconButton(
             onPressed: () => Navigator.pop(context),
             icon: const Icon(Icons.arrow_back_ios_new, size: 20),
+            color: Theme.of(context).primaryColor, // Ensure it's Orange
           ),
+
+          // Title
           Text(
             "Detail",
-            style: GoogleFonts.sora(
-              fontSize: 18,
-              fontWeight: FontWeight.w600,
-              color: const Color(0xFF2F2D2C),
-            ),
+            style: Theme.of(context).textTheme.titleLarge,
           ),
-          const FavoriteButton(),
+
+          // FAVORITE HEART ICON
+          Consumer<FavoritesProvider>(
+            builder: (context, favorites, child) {
+              final isLiked = favorites.isFavorite(coffee);
+              return IconButton(
+                onPressed: () => favorites.toggleFavorite(coffee),
+                icon: Icon(
+                  isLiked ? Icons.favorite : Icons.favorite_border,
+                  color: isLiked ? Theme.of(context).primaryColor : Colors.black,
+                  size: 28,
+                ),
+              );
+            },
+          ),
         ],
       ),
-    );
-  }
-}
-
-class FavoriteButton extends StatefulWidget {
-  const FavoriteButton({super.key});
-
-  @override
-  State<FavoriteButton> createState() => _FavoriteButtonState();
-}
-
-class _FavoriteButtonState extends State<FavoriteButton> {
-  bool isLiked = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      onPressed: () {
-        setState(() {
-          isLiked = !isLiked;
-        });
-      },
-      // Change color based on state
-      color: isLiked ? const Color(0xFFC67C4E) : Colors.black,
-      icon: isLiked 
-          ? const Icon(Icons.favorite) 
-          : const ImageIcon(AssetImage("assets/icons/heart2.png")),
     );
   }
 }

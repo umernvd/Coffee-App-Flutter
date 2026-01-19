@@ -1,42 +1,48 @@
 // ignore_for_file: deprecated_member_use
 
-import 'package:coffee_app/screens/detail_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import '../../models/coffee_model.dart';
 import '../../providers/cart_provider.dart';
+import '../../providers/favorites_provider.dart';
+import '../../screens/detail_screen.dart';
 
 class CoffeeCard extends StatelessWidget {
   final Coffee coffee;
-
   const CoffeeCard({super.key, required this.coffee});
 
   @override
   Widget build(BuildContext context) {
+    // Wrap everything in a GestureDetector for Navigation
     return GestureDetector(
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => DetailScreen(coffee: coffee)),
+          MaterialPageRoute(
+            builder: (context) => DetailScreen(coffee: coffee),
+          ),
         );
       },
       child: Container(
-        // Give the card a white background and rounded corners
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(16),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.05),
+              blurRadius: 10,
+              offset: const Offset(0, 4),
+            )
+          ],
         ),
-        padding: const EdgeInsets.all(4), // Padding inside the white card
-        // Wrap everything in a Column
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Image Stack with Rating
+            // Image and Rating Stack
             Stack(
               children: [
                 ClipRRect(
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(16),
                   child: Image.asset(
                     coffee.imageUrl,
                     height: 128,
@@ -44,114 +50,113 @@ class CoffeeCard extends StatelessWidget {
                     fit: BoxFit.cover,
                   ),
                 ),
+                // Rating Badge
                 Positioned(
-                  top: 0,
-                  right: 0,
+                  top: 8,
+                  left: 8,
                   child: Container(
-                    padding: const EdgeInsets.all(6),
+                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                     decoration: BoxDecoration(
                       color: Colors.black.withOpacity(0.6),
-                      borderRadius: const BorderRadius.only(
-                        bottomLeft: Radius.circular(12),
-                        topRight: Radius.circular(12),
-                      ),
+                      borderRadius: BorderRadius.circular(16),
                     ),
                     child: Row(
-                      mainAxisSize: MainAxisSize.min,
                       children: [
-                        const Icon(
-                          Icons.star,
-                          color: Color(0xFFFBBE21),
-                          size: 10,
-                        ),
+                        const Icon(Icons.star, color: Color(0xFFD17842), size: 12),
                         const SizedBox(width: 4),
                         Text(
                           "${coffee.rating}",
-                          style: GoogleFonts.sora(
+                          style: const TextStyle(
                             color: Colors.white,
-                            fontSize: 10,
                             fontWeight: FontWeight.bold,
+                            fontSize: 10,
+                            fontFamily: 'Sora',
                           ),
                         ),
                       ],
                     ),
                   ),
                 ),
+                // Favorite Heart Icon
+                Positioned(
+                  top: 8,
+                  right: 8,
+                  child: Consumer<FavoritesProvider>(
+                    builder: (context, favorites, child) {
+                      final isLiked = favorites.isFavorite(coffee);
+                      return GestureDetector(
+                        onTap: () => favorites.toggleFavorite(coffee),
+                        child: Container(
+                          padding: const EdgeInsets.all(6),
+                          decoration: BoxDecoration(
+                            color: Colors.black.withOpacity(0.5),
+                            shape: BoxShape.circle,
+                          ),
+                          child: Icon(
+                            isLiked ? Icons.favorite : Icons.favorite_border,
+                            color: isLiked ? Theme.of(context).primaryColor : Colors.white,
+                            size: 16,
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
               ],
             ),
-
-            const SizedBox(height: 12),
-
-            // Texts
+            
+            // Details Section
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              padding: const EdgeInsets.all(12),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     coffee.name,
-                    style: GoogleFonts.sora(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: const Color(0xFF2F2D2C),
-                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context).textTheme.titleMedium,
                   ),
+                  const SizedBox(height: 4),
                   Text(
                     coffee.type,
-                    style: GoogleFonts.sora(
-                      fontSize: 12,
-                      color: const Color(0xFF9B9B9B),
-                    ),
+                    style: Theme.of(context).textTheme.bodyMedium,
                   ),
-                ],
-              ),
-            ),
-
-            // Pushes the price to the bottom if the column has extra height
-            const Spacer(),
-
-            // Price and Add Button
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 8.0,
-                vertical: 8.0,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "\$ ${coffee.price}",
-                    style: GoogleFonts.sora(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                      color: const Color(0xFF2F2D2C),
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      // 1. Add to cart
-                      context.read<CartProvider>().addToCart(coffee);
-                      // 2. Show feedback
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text("${coffee.name} added to cart!"),
-                          duration: const Duration(milliseconds: 800),
-                          backgroundColor: const Color(0xFFC67C4E),
+                  const SizedBox(height: 12),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "\$ ${coffee.price}",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                          color: Theme.of(context).textTheme.titleLarge?.color,
+                          fontFamily: 'Sora',
                         ),
-                      );
-                    },
-                    child: Container(
-                      padding: const EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                        color: const Color(0xFFC67C4E),
-                        borderRadius: BorderRadius.circular(8),
                       ),
-                      child: const Icon(
-                        Icons.add,
-                        color: Colors.white,
-                        size: 16,
+                      // Add Button
+                      GestureDetector(
+                        onTap: () {
+                          context.read<CartProvider>().addToCart(coffee);
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text("${coffee.name} added to cart!"),
+                              duration: const Duration(milliseconds: 800),
+                              backgroundColor: Theme.of(context).primaryColor,
+                            ),
+                          );
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.all(8),
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).primaryColor,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: const Icon(Icons.add, color: Colors.white, size: 16),
+                        ),
                       ),
-                    ),
+                    ],
                   ),
                 ],
               ),

@@ -5,6 +5,7 @@ import 'providers/cart_provider.dart';
 import 'providers/order_provider.dart';
 import 'screens/onboarding_screen.dart';
 import 'services/storage_service.dart';
+import 'providers/favorites_provider.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized(); // Required for async main
@@ -14,6 +15,7 @@ void main() async{
       providers: [
         ChangeNotifierProvider(create: (_) => CartProvider()),
         ChangeNotifierProvider(create: (_) => OrderProvider()),
+        ChangeNotifierProvider(create: (_) => FavoritesProvider()),
       ],
       child: const MyApp(),
     ),

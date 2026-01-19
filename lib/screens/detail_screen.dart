@@ -7,23 +7,21 @@ import '../widgets/detail/size_selector.dart';
 import '../widgets/detail/bottom_price_bar.dart';
 
 class DetailScreen extends StatelessWidget {
-  // This variable holds the data passed from Home Screen
-  final Coffee coffee; 
+  final Coffee coffee;
 
   const DetailScreen({super.key, required this.coffee});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF9F9F9),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: SafeArea(
-        bottom: false, // Allows content to go behind bottom bar area if needed
+        bottom: false,
         child: Column(
           children: [
-            // 1. App Bar
-            const DetailAppBar(),
-            
-            // 2. Scrollable Content
+            // PASS THE COFFEE OBJECT HERE
+            DetailAppBar(coffee: coffee),
+
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
@@ -31,8 +29,7 @@ class DetailScreen extends StatelessWidget {
                     ItemImage(imageUrl: coffee.imageUrl),
                     InfoSection(coffee: coffee),
                     const SizeSelector(),
-                    // Add some padding at bottom so content isn't hidden behind the sticky bar
-                    const SizedBox(height: 20), 
+                    const SizedBox(height: 20),
                   ],
                 ),
               ),
@@ -40,7 +37,6 @@ class DetailScreen extends StatelessWidget {
           ],
         ),
       ),
-      // 3. Fixed Bottom Bar
       bottomNavigationBar: BottomPriceBar(coffee: coffee),
     );
   }
