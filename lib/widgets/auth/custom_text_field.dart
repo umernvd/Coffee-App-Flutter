@@ -40,6 +40,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
           style: Theme.of(context).textTheme.titleMedium?.copyWith(
             fontSize: 16,
             fontWeight: FontWeight.w600,
+            color: const Color.fromARGB(255, 255, 255, 255), 
           ),
         ),
         const SizedBox(height: 8),
@@ -90,7 +91,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                 ? IconButton(
                     icon: Icon(
                       _obscureText ? Icons.visibility_off : Icons.visibility,
-                      color: const Color(0xFFA2A2A2),
+                      color: const Color.fromARGB(255, 0, 0, 0),
                     ),
                     onPressed: () {
                       setState(() {

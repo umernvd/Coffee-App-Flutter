@@ -110,14 +110,26 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       ),
                     );
                   },
-                  child: const Text(
-                    "Already have an account? Login",
-                    style: TextStyle(
-                      fontFamily: 'Sora',
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600,
-                      color: Colors
-                          .white, // Assuming dark background on onboarding
+                  child: Text.rich(
+                    TextSpan(
+                      text: "Already have an account? ",
+                      style: const TextStyle(
+                        fontFamily: 'Sora',
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                        color: Color.fromARGB(255, 167, 167, 167),
+                      ),
+                      children: [
+                        TextSpan(
+                          text: "Login",
+                          style: TextStyle(
+                            fontFamily: 'Sora',
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
