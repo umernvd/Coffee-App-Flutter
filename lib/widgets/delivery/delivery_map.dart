@@ -21,12 +21,12 @@ class DeliveryMap extends StatelessWidget {
           Positioned.fill(child: CustomPaint(painter: RoutePainter())),
 
           // Start Location Pin (Target)
-          Positioned(
+          const Positioned(
             left: 75,
             top: 245,
             child: Icon(
               Icons.location_on,
-              color: const Color(0xFFC67C4E),
+              color: Color(0xFFC67C4E),
               size: 32,
             ),
           ),
