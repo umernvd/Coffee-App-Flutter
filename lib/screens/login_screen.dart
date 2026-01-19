@@ -44,16 +44,8 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       extendBodyBehindAppBar: true,
 
-      // 2. PREVENT SQUISHING (Keeps background static when keyboard opens)
-      resizeToAvoidBottomInset: false,
       body: Stack(
         children: [
-          Positioned.fill(
-            child: Image.asset('assets/onboarding.png', fit: BoxFit.fill),
-          ),
-          Positioned.fill(
-            child: Container(color: Colors.black.withOpacity(0.5)),
-          ),
           SafeArea(
             child: Center(
               child: SingleChildScrollView(

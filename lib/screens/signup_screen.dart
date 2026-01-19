@@ -52,12 +52,7 @@ class _SignupScreenState extends State<SignupScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: true,
-      resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.transparent,
-
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new, color: Color(0xFF242424)),
@@ -66,17 +61,6 @@ class _SignupScreenState extends State<SignupScreen> {
       ),
       body: Stack(
         children: [
-          Positioned.fill(
-            child: Image.asset(
-              'assets/onboarding.png', 
-              fit: BoxFit.cover,
-            ),
-          ),
-
-          // 3. DARK OVERLAY
-          Positioned.fill(
-            child: Container(color: Colors.black.withOpacity(0.5)),
-          ),
           SafeArea(
             child: SingleChildScrollView(
               padding: const EdgeInsets.symmetric(horizontal: 24),
