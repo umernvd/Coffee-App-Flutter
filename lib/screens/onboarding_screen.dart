@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import '../models/onboarding_item.dart';
 import '../widgets/onboarding/slide_content.dart';
 import '../widgets/onboarding/progress_indicator.dart';
-import '../widgets/custom_button.dart'; 
-import 'home_screen.dart';
+import '../widgets/custom_button.dart';
+import './home_screen.dart';
+import './login_screen.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -16,7 +17,7 @@ class OnboardingScreen extends StatefulWidget {
 class _OnboardingScreenState extends State<OnboardingScreen> {
   // Controller to handle page swipes programmatically
   final PageController _pageController = PageController();
-  
+
   int _currentIndex = 0;
   Timer? _timer;
 
@@ -54,7 +55,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       body: Stack(
         children: [
           // 1. The Carousel
@@ -73,7 +73,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
           // 2. Bottom UI Section (Progress Bar + Button)
           Positioned(
-            bottom: 40,
+            bottom: 50,
             left: 24,
             right: 24,
             child: Column(
@@ -83,19 +83,43 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   activeIndex: _currentIndex,
                   totalCount: onboardingData.length,
                 ),
-                
-                const SizedBox(height: 32),
-                
+
+                const SizedBox(height: 12),
+
                 // Get Started Button
                 CustomButton(
                   text: "Get Started",
                   onPressed: () {
                     // Navigate to Home
                     Navigator.pushReplacement(
-                      context, 
-                      MaterialPageRoute(builder: (context) => const HomeScreen()),
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const HomeScreen(),
+                      ),
                     );
                   },
+                ),
+                const SizedBox(height: 0), // Add spacing
+                // New Login Button
+                TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const LoginScreen(),
+                      ),
+                    );
+                  },
+                  child: const Text(
+                    "Already have an account? Login",
+                    style: TextStyle(
+                      fontFamily: 'Sora',
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                      color: Colors
+                          .white, // Assuming dark background on onboarding
+                    ),
+                  ),
                 ),
               ],
             ),

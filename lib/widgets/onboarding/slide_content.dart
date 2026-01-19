@@ -37,9 +37,9 @@ class SlideContent extends StatelessWidget {
 
         // 3. Text Content
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 140),
+          padding: const EdgeInsets.only(top: 100.0, left: 24.0, right: 24.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
                 item.title,
@@ -47,19 +47,19 @@ class SlideContent extends StatelessWidget {
                 style: const TextStyle(
                   fontFamily: 'Sora',
                   fontSize: 32,
-                  fontWeight: FontWeight.w600,
+                  fontWeight: FontWeight.w800,
                   color: Colors.white,
                 ),
               ),
-              const SizedBox(height: 12),
+              const SizedBox(height: 10),
               Text(
                 item.description,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontFamily: 'Sora',
-                  fontSize: 14,
-                  fontWeight: FontWeight.w400,
-                  color: Color(0xFFA2A2A2),
+                  fontSize: 12,
+                  fontWeight: FontWeight.w600,
+                  color: Color.fromARGB(255, 255, 255, 255),
                   height: 1.5,
                 ),
               ),
