@@ -1,14 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/coffee_model.dart';
-
-class CartItem {
-  final Coffee coffee;
-  int quantity;
-
-  CartItem({required this.coffee, this.quantity = 1});
-
-  double get totalPrice => (double.tryParse(coffee.price) ?? 0.0) * quantity;
-}
+import '../models/cart_item.dart';
 
 class CartProvider extends ChangeNotifier {
   final List<CartItem> _items = [];

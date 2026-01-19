@@ -13,6 +13,7 @@ dependencies:
   provider: ^6.1.1          # State Management
   google_fonts: ^6.1.0      # Typography
   cupertino_icons: ^1.0.6   # iOS Icons
+  shared_preferences: ^2.2.0
 
 dev_dependencies:
   flutter_test:

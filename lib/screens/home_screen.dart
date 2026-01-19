@@ -3,6 +3,7 @@ import '../models/coffee_model.dart';
 import '../widgets/home/promo_banner.dart';
 import '../widgets/home/coffee_card.dart';
 import '../widgets/home/bottom_nav_bar.dart';
+import '../repositories/coffee_repository.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -38,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   // Logic: Filter the list based on Category AND Search Text
   List<Coffee> get filteredCoffees {
-    return coffeeList.where((coffee) {
+    return CoffeeRepository().getCoffees().where((coffee) {
       // 1. Check Category
       final matchesCategory =
           selectedCategory == "All Coffee" ||

@@ -1,6 +1,6 @@
 import 'dart:async';
+import 'package:coffee_app/models/cart_item.dart';
 import 'package:flutter/material.dart';
-import 'cart_provider.dart';
 
 class OrderProvider extends ChangeNotifier {
   int _quantity = 1;
