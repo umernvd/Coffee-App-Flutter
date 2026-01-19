@@ -1,5 +1,5 @@
 import 'dart:convert'; // Required for JSON encoding/decoding
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import '../models/coffee_model.dart';
 import '../models/cart_item.dart';
 import '../services/storage_service.dart'; // Import storage service
@@ -32,7 +32,9 @@ class CartProvider extends ChangeNotifier {
         notifyListeners();
       } catch (e) {
         // Safety: If data is corrupted, start with an empty list
-        print("Error loading cart: $e");
+        if (kDebugMode) {
+          print("Error loading cart: $e");
+        }
         _items = [];
       }
     }
