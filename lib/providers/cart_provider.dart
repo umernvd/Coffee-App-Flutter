@@ -1,13 +1,56 @@
+import 'dart:convert'; // Required for JSON encoding/decoding
 import 'package:flutter/material.dart';
 import '../models/coffee_model.dart';
 import '../models/cart_item.dart';
+import '../services/storage_service.dart'; // Import storage service
 
 class CartProvider extends ChangeNotifier {
-  final List<CartItem> _items = [];
+  List<CartItem> _items = [];
 
   List<CartItem> get items => List.unmodifiable(_items);
 
   double get totalPrice => _items.fold(0, (sum, item) => sum + item.totalPrice);
+
+  // CONSTRUCTOR: Load the cart immediately when the app starts
+  CartProvider() {
+    _loadCart();
+  }
+
+  // --- LOAD LOGIC (Deserialization) ---
+  void _loadCart() {
+    // 1. Get the raw string from storage
+    final String? cartString = StorageService().getString('cart_items');
+
+    if (cartString != null && cartString.isNotEmpty) {
+      try {
+        // 2. Decode the JSON string into a List of Maps
+        final List<dynamic> jsonList = jsonDecode(cartString);
+
+        // 3. Convert each Map back into a CartItem object
+        _items = jsonList.map((jsonItem) => CartItem.fromJson(jsonItem)).toList();
+        
+        notifyListeners();
+      } catch (e) {
+        // Safety: If data is corrupted, start with an empty list
+        print("Error loading cart: $e");
+        _items = [];
+      }
+    }
+  }
+
+  // --- SAVE LOGIC (Serialization) ---
+  void _saveCart() {
+    // 1. Convert List<CartItem> to List<Map>
+    List<Map<String, dynamic>> jsonList = _items.map((item) => item.toJson()).toList();
+    
+    // 2. Encode List<Map> to a single JSON String
+    final String cartString = jsonEncode(jsonList);
+    
+    // 3. Save to disk
+    StorageService().setString('cart_items', cartString);
+  }
+
+  // --- ACTIONS ---
 
   void addToCart(Coffee coffee) {
     final index = _items.indexWhere((item) => item.coffee.name == coffee.name);
@@ -16,6 +59,7 @@ class CartProvider extends ChangeNotifier {
     } else {
       _items.add(CartItem(coffee: coffee));
     }
+    _saveCart(); // <--- Auto-save trigger
     notifyListeners();
   }
 
@@ -25,11 +69,13 @@ class CartProvider extends ChangeNotifier {
     } else {
       _items.remove(item);
     }
+    _saveCart(); // <--- Auto-save trigger
     notifyListeners();
   }
   
   void clearCart() {
     _items.clear();
+    _saveCart(); // <--- Auto-save trigger
     notifyListeners();
   }
 }
