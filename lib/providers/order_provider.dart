@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:coffee_app/models/cart_item.dart';
 import 'package:flutter/material.dart';
+import '../services/storage_service.dart'; // <--- Import Storage Service
 
 class OrderProvider extends ChangeNotifier {
   int _quantity = 1;
@@ -15,6 +16,25 @@ class OrderProvider extends ChangeNotifier {
   bool get showError => _showError;
   double get deliveryFee => 1.0;
 
+  // CONSTRUCTOR: Load data immediately when the provider is created
+  OrderProvider() {
+    _loadData();
+  }
+
+  // LOAD Data from Storage
+  void _loadData() {
+    final savedAddress = StorageService().getString('user_address');
+    final savedNote = StorageService().getString('user_note');
+
+    if (savedAddress != null && savedAddress.isNotEmpty) {
+      _address = savedAddress;
+    }
+    if (savedNote != null && savedNote.isNotEmpty) {
+      _note = savedNote;
+    }
+    notifyListeners();
+  }
+
   // Setters & Actions
   void incrementQuantity() {
     _quantity++;
@@ -28,13 +48,17 @@ class OrderProvider extends ChangeNotifier {
     }
   }
 
+  // SAVE Address when updated
   void setAddress(String newAddress) {
     _address = newAddress;
+    StorageService().setString('user_address', newAddress); // <--- Save to disk
     notifyListeners();
   }
 
+  // SAVE Note when updated
   void setNote(String newNote) {
     _note = newNote;
+    StorageService().setString('user_note', newNote); // <--- Save to disk
     notifyListeners();
   }
 
@@ -67,12 +91,10 @@ class OrderProvider extends ChangeNotifier {
     });
   }
   
-  // Reset state when leaving the screen
+  // Reset state (Optional: Only if you want to clear data on logout)
   void reset() {
     _quantity = 1;
-    _address = "";
-    _note = "No notes added";
+    // We DON'T reset address/note here anymore so it persists across orders
     _showError = false;
-    // Don't notify listeners here if called in dispose
   }
 }

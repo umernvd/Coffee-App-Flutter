@@ -3,9 +3,12 @@ import 'package:provider/provider.dart';
 import 'theme/app_theme.dart';
 import 'providers/cart_provider.dart';
 import 'providers/order_provider.dart';
-import 'screens/onboarding_screen.dart'; // Ensure this import exists
+import 'screens/onboarding_screen.dart';
+import 'services/storage_service.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized(); // Required for async main
+  await StorageService().init(); // Initialize Storage Service
   runApp(
     MultiProvider(
       providers: [
