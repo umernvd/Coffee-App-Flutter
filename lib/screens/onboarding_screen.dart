@@ -4,7 +4,7 @@ import '../models/onboarding_item.dart';
 import '../widgets/onboarding/slide_content.dart';
 import '../widgets/onboarding/progress_indicator.dart';
 import '../widgets/custom_button.dart';
-import './home_screen.dart';
+import './signup_screen.dart';
 import './login_screen.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -65,10 +65,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               setState(() {
                 _currentIndex = index;
               });
+              _timer?.cancel();
+              _startAutoScroll();
             },
             itemBuilder: (context, index) {
               return SlideContent(item: onboardingData[index]);
             },
+            
           ),
 
           // 2. Bottom UI Section (Progress Bar + Button)
@@ -90,19 +93,21 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 CustomButton(
                   text: "Get Started",
                   onPressed: () {
+                    _timer?.cancel();
                     // Navigate to Home
-                    Navigator.pushReplacement(
+                    Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const HomeScreen(),
+                        builder: (context) => const SignupScreen(),
                       ),
                     );
                   },
                 ),
-                const SizedBox(height: 0), // Add spacing
+                const SizedBox(height: 2), // Add spacing
                 // New Login Button
                 TextButton(
                   onPressed: () {
+                    _timer?.cancel();
                     Navigator.push(
                       context,
                       MaterialPageRoute(

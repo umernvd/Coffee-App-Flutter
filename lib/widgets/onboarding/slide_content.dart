@@ -46,7 +46,7 @@ class SlideContent extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontFamily: 'Sora',
-                  fontSize: 32,
+                  fontSize: 48,
                   fontWeight: FontWeight.w800,
                   color: Colors.white,
                 ),
@@ -57,8 +57,8 @@ class SlideContent extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontFamily: 'Sora',
-                  fontSize: 12,
-                  fontWeight: FontWeight.w600,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
                   color: Color.fromARGB(255, 255, 255, 255),
                   height: 1.5,
                 ),

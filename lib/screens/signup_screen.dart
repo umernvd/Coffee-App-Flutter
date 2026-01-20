@@ -55,7 +55,7 @@ class _SignupScreenState extends State<SignupScreen> {
       appBar: AppBar(
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new, color: Color(0xFF242424)),
+          icon: const Icon(Icons.arrow_back_ios_new, color: Color(0xFFC67C4E)),
           onPressed: () => Navigator.pop(context),
         ),
       ),
