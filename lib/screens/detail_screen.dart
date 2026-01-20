@@ -26,7 +26,10 @@ class DetailScreen extends StatelessWidget {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    ItemImage(imageUrl: coffee.imageUrl),
+                    ItemImage(
+                      imageUrl: coffee.imageUrl,
+                      heroTag: 'coffee-${coffee.name}',
+                    ),
                     InfoSection(coffee: coffee),
                     const SizeSelector(),
                     const SizedBox(height: 20),

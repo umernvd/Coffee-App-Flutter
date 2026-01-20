@@ -23,10 +23,7 @@ class DetailAppBar extends StatelessWidget {
           ),
 
           // Title
-          Text(
-            "Detail",
-            style: Theme.of(context).textTheme.titleLarge,
-          ),
+          Text("Detail", style: Theme.of(context).textTheme.titleLarge),
 
           // FAVORITE HEART ICON
           Consumer<FavoritesProvider>(
@@ -34,10 +31,17 @@ class DetailAppBar extends StatelessWidget {
               final isLiked = favorites.isFavorite(coffee);
               return IconButton(
                 onPressed: () => favorites.toggleFavorite(coffee),
-                icon: Icon(
-                  isLiked ? Icons.favorite : Icons.favorite_border,
-                  color: isLiked ? Theme.of(context).primaryColor : Colors.black,
-                  size: 28,
+                icon: AnimatedScale(
+                  scale: isLiked ? 1.0 : 0.9,
+                  duration: const Duration(milliseconds: 200),
+                  curve: Curves.easeInOut,
+                  child: Icon(
+                    isLiked ? Icons.favorite : Icons.favorite_border,
+                    color: isLiked
+                        ? Theme.of(context).primaryColor
+                        : Colors.black,
+                    size: 28,
+                  ),
                 ),
               );
             },

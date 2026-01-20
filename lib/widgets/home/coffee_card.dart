@@ -18,9 +18,7 @@ class CoffeeCard extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(
-            builder: (context) => DetailScreen(coffee: coffee),
-          ),
+          MaterialPageRoute(builder: (context) => DetailScreen(coffee: coffee)),
         );
       },
       child: Container(
@@ -32,7 +30,7 @@ class CoffeeCard extends StatelessWidget {
               color: Colors.black.withOpacity(0.05),
               blurRadius: 10,
               offset: const Offset(0, 4),
-            )
+            ),
           ],
         ),
         child: Column(
@@ -41,13 +39,17 @@ class CoffeeCard extends StatelessWidget {
             // Image and Rating Stack
             Stack(
               children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(16),
-                  child: Image.asset(
-                    coffee.imageUrl,
-                    height: 128,
-                    width: double.infinity,
-                    fit: BoxFit.cover,
+                // Hero animation for smooth transition to detail screen
+                Hero(
+                  tag: 'coffee-${coffee.name}',
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(16),
+                    child: Image.asset(
+                      coffee.imageUrl,
+                      height: 128,
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
                 // Rating Badge
@@ -55,14 +57,21 @@ class CoffeeCard extends StatelessWidget {
                   top: 8,
                   left: 8,
                   child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8,
+                      vertical: 4,
+                    ),
                     decoration: BoxDecoration(
                       color: Colors.black.withOpacity(0.6),
                       borderRadius: BorderRadius.circular(16),
                     ),
                     child: Row(
                       children: [
-                        const Icon(Icons.star, color: Color(0xFFD17842), size: 12),
+                        const Icon(
+                          Icons.star,
+                          color: Color(0xFFD17842),
+                          size: 12,
+                        ),
                         const SizedBox(width: 4),
                         Text(
                           "${coffee.rating}",
@@ -92,10 +101,17 @@ class CoffeeCard extends StatelessWidget {
                             color: Colors.black.withOpacity(0.5),
                             shape: BoxShape.circle,
                           ),
-                          child: Icon(
-                            isLiked ? Icons.favorite : Icons.favorite_border,
-                            color: isLiked ? Theme.of(context).primaryColor : Colors.white,
-                            size: 16,
+                          child: AnimatedScale(
+                            scale: isLiked ? 1.0 : 0.85,
+                            duration: const Duration(milliseconds: 200),
+                            curve: Curves.easeInOut,
+                            child: Icon(
+                              isLiked ? Icons.favorite : Icons.favorite_border,
+                              color: isLiked
+                                  ? Theme.of(context).primaryColor
+                                  : Colors.white,
+                              size: 16,
+                            ),
                           ),
                         ),
                       );
@@ -104,7 +120,7 @@ class CoffeeCard extends StatelessWidget {
                 ),
               ],
             ),
-            
+
             // Details Section
             Padding(
               padding: const EdgeInsets.all(12),
@@ -153,7 +169,11 @@ class CoffeeCard extends StatelessWidget {
                             color: Theme.of(context).primaryColor,
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          child: const Icon(Icons.add, color: Colors.white, size: 16),
+                          child: const Icon(
+                            Icons.add,
+                            color: Colors.white,
+                            size: 16,
+                          ),
                         ),
                       ),
                     ],
