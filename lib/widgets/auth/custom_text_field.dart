@@ -40,11 +40,11 @@ class _CustomTextFieldState extends State<CustomTextField> {
           style: Theme.of(context).textTheme.titleMedium?.copyWith(
             fontSize: 16,
             fontWeight: FontWeight.w600,
-            color: const Color.fromARGB(255, 255, 255, 255), 
+            color: const Color(0xFFC67C4E),
           ),
         ),
         const SizedBox(height: 8),
-        
+
         // Input Field
         TextFormField(
           controller: widget.controller,
@@ -66,8 +66,11 @@ class _CustomTextFieldState extends State<CustomTextField> {
             ),
             filled: true,
             fillColor: Colors.white,
-            contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
-            
+            contentPadding: const EdgeInsets.symmetric(
+              horizontal: 16,
+              vertical: 18,
+            ),
+
             // Border States
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
@@ -83,9 +86,11 @@ class _CustomTextFieldState extends State<CustomTextField> {
             ),
             errorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
-              borderSide: const BorderSide(color: Color(0xFFED5565)), // System Red
+              borderSide: const BorderSide(
+                color: Color(0xFFED5565),
+              ), // System Red
             ),
-            
+
             // Password Toggle Icon
             suffixIcon: widget.isPassword
                 ? IconButton(
