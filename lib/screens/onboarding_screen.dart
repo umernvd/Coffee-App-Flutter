@@ -28,6 +28,15 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Preload all onboarding images to prevent white flash
+    for (var item in onboardingData) {
+      precacheImage(AssetImage(item.image), context);
+    }
+  }
+
+  @override
   void dispose() {
     _timer?.cancel(); // Always cancel timers to prevent memory leaks
     _pageController.dispose();
@@ -60,6 +69,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           // 1. The Carousel
           PageView.builder(
             controller: _pageController,
+            allowImplicitScrolling: true,
             itemCount: onboardingData.length,
             onPageChanged: (index) {
               setState(() {
@@ -71,7 +81,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             itemBuilder: (context, index) {
               return SlideContent(item: onboardingData[index]);
             },
-            
           ),
 
           // 2. Bottom UI Section (Progress Bar + Button)
