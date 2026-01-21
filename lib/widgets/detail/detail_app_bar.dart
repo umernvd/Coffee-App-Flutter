@@ -32,7 +32,7 @@ class DetailAppBar extends StatelessWidget {
               return IconButton(
                 onPressed: () => favorites.toggleFavorite(coffee),
                 icon: AnimatedScale(
-                  scale: isLiked ? 1.0 : 0.9,
+                  scale: isLiked ? 1.05 : 0.9,
                   duration: const Duration(milliseconds: 200),
                   curve: Curves.easeInOut,
                   child: Icon(
