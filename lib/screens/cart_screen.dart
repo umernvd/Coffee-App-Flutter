@@ -18,26 +18,31 @@ class CartScreen extends StatelessWidget {
           icon: Icon(Icons.arrow_back_ios_new, color: Theme.of(context).primaryColor, size: 20),
           onPressed: () => Navigator.pop(context),
         ),
-        title: Text(
-          "Cart",
-          style: Theme.of(context).textTheme.titleLarge,
-        ),
+       title: const Text(
+                  "Cart",
+                  style: TextStyle(
+                    fontFamily: 'Sora',
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                    color: Color(0xFFD17842),
+                  ),
+                ),
       ),
-      // Uses the new Provider (Consumer)
+      // Uses the Provider (Consumer)
       body: Consumer<CartProvider>(
         builder: (context, cart, child) {
           
           // EMPTY STATE
           if (cart.items.isEmpty) {
-            return Center(
+            return const Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.shopping_bag_outlined, size: 80, color: Colors.grey[400]),
-                  const SizedBox(height: 16),
-                  const Text(
+                  Icon(Icons.shopping_bag_outlined, size: 80, color: Color(0xFFD17842)),
+                  SizedBox(height: 16),
+                  Text(
                     "No item in your cart",
-                    style: TextStyle(fontSize: 16, color: Colors.grey, fontFamily: 'Sora'),
+                    style: TextStyle(fontSize: 16, color: Colors.black, fontFamily: 'Sora'),
                   ),
                 ],
               ),
@@ -92,7 +97,7 @@ class CartScreen extends StatelessWidget {
                             ),
                           ),
                           
-                          // Counter Buttons (Corrected: Only one row of buttons)
+                          // Counter Buttons
                           Row(
                             children: [
                               _iconButton(Icons.remove, () => cart.removeFromCart(item)),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../screens/cart_screen.dart';
+import '../../screens/favorites_screen.dart'; // Import Favorites Screen
 import '../../providers/cart_provider.dart';
 
 class BottomNavBar extends StatefulWidget {
@@ -23,13 +24,12 @@ class _BottomNavBarState extends State<BottomNavBar>
       duration: const Duration(milliseconds: 300),
       vsync: this,
     );
-    _bounceAnimation =
-        TweenSequence<double>([
-          TweenSequenceItem(tween: Tween(begin: 1.0, end: 1.3), weight: 50),
-          TweenSequenceItem(tween: Tween(begin: 1.3, end: 1.0), weight: 50),
-        ]).animate(
-          CurvedAnimation(parent: _bounceController, curve: Curves.elasticOut),
-        );
+    _bounceAnimation = TweenSequence<double>([
+      TweenSequenceItem(tween: Tween(begin: 1.0, end: 1.3), weight: 50),
+      TweenSequenceItem(tween: Tween(begin: 1.3, end: 1.0), weight: 50),
+    ]).animate(
+      CurvedAnimation(parent: _bounceController, curve: Curves.elasticOut),
+    );
   }
 
   @override
@@ -49,12 +49,45 @@ class _BottomNavBarState extends State<BottomNavBar>
   Widget build(BuildContext context) {
     return Container(
       height: 80,
-      decoration: const BoxDecoration(color: Colors.white),
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(24),
+          topRight: Radius.circular(24),
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Color.fromRGBO(0, 0, 0, 0.05),
+            blurRadius: 10,
+            offset: Offset(0, -4),
+          ),
+        ],
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          Image.asset('assets/icons/home.png', width: 24, height: 24),
-          Image.asset('assets/icons/heart.png', width: 24, height: 24),
+          // 1. Home Icon
+          GestureDetector(
+            onTap: () {
+              // Already on Home
+            },
+            child: Image.asset('assets/icons/home.png', width: 24, height: 24),
+          ),
+
+          // 2. Favorites Icon (UPDATED)
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const FavoritesScreen(),
+                ),
+              );
+            },
+            child: Image.asset('assets/icons/heart.png', width: 24, height: 24),
+          ),
+
+          // 3. Cart Icon (With Animation Logic Preserved)
           Consumer<CartProvider>(
             builder: (context, cart, child) {
               // Trigger animation when cart count increases
@@ -66,7 +99,9 @@ class _BottomNavBarState extends State<BottomNavBar>
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const CartScreen()),
+                    MaterialPageRoute(
+                      builder: (context) => const CartScreen(),
+                    ),
                   );
                 },
                 child: ScaleTransition(
@@ -110,7 +145,15 @@ class _BottomNavBarState extends State<BottomNavBar>
               );
             },
           ),
-          Image.asset('assets/icons/notification.png', width: 24, height: 24),
+
+          // 4. Notification Icon
+          GestureDetector(
+            onTap: () {
+              // Placeholder for notifications
+            },
+            child: Image.asset(
+                'assets/icons/notification.png', width: 24, height: 24),
+          ),
         ],
       ),
     );

@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 import '../models/coffee_model.dart';
 import '../services/storage_service.dart';
+import '../repositories/coffee_repository.dart';
 
 class FavoritesProvider extends ChangeNotifier {
   List<String> _favoriteIds = [];
 
-  List<String> get favoriteIds => _favoriteIds;
+  // dynamically finds the Coffee objects that match your saved IDs
+  List<Coffee> get favorites {
+    final allCoffees = CoffeeRepository().getCoffees();
+    return allCoffees
+        .where((coffee) => _favoriteIds.contains(coffee.name))
+        .toList();
+  }
 
   FavoritesProvider() {
     _loadFavorites();
