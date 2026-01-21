@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../screens/cart_screen.dart';
-import '../../screens/favorites_screen.dart'; // Import Favorites Screen
+import '../../screens/profile_screen.dart';
+import '../../screens/favorites_screen.dart';
 import '../../providers/cart_provider.dart';
 
 class BottomNavBar extends StatefulWidget {
@@ -74,7 +75,7 @@ class _BottomNavBarState extends State<BottomNavBar>
             child: Image.asset('assets/icons/home.png', width: 24, height: 24),
           ),
 
-          // 2. Favorites Icon (UPDATED)
+          // 2. Favorites Icon
           GestureDetector(
             onTap: () {
               Navigator.push(
@@ -146,13 +147,21 @@ class _BottomNavBarState extends State<BottomNavBar>
             },
           ),
 
-          // 4. Notification Icon
+          // 4. Profile Icon
           GestureDetector(
             onTap: () {
-              // Placeholder for notifications
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ProfileScreen(),
+                ),
+              );
             },
-            child: Image.asset(
-                'assets/icons/notification.png', width: 24, height: 24),
+           child: const Icon(
+              Icons.person_outline, 
+              size: 32, 
+              color: Color(0xFFB6B6B6),
+            ),
           ),
         ],
       ),

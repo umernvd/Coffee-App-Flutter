@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../models/coffee_model.dart';
-import '../../providers/favorites_provider.dart'; // Import Provider
+import '../../providers/favorites_provider.dart';
 
 class DetailAppBar extends StatelessWidget {
-  final Coffee coffee; // Add this
+  final Coffee coffee;
 
-  const DetailAppBar({super.key, required this.coffee}); // Add to constructor
+  const DetailAppBar({super.key, required this.coffee});
 
   @override
   Widget build(BuildContext context) {
