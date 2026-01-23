@@ -49,7 +49,7 @@ class CoffeeRepository {
       category: 'Cappuccino',
     ),
 
-    // --- Espresso ---
+    // Espresso
     Coffee(
       name: 'Double Espresso',
       type: 'Strong',
@@ -71,7 +71,7 @@ class CoffeeRepository {
       category: 'Espresso',
     ),
 
-    // --- Latte ---
+    // Latte
     Coffee(
       name: 'Caramel Latte',
       type: 'Sweet & Creamy',
@@ -93,7 +93,7 @@ class CoffeeRepository {
       category: 'Latte',
     ),
 
-    // --- Americano ---
+    // Americano
     Coffee(
       name: 'Classic Americano',
       type: 'Black',
