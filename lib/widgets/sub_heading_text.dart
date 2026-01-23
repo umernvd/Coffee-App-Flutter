@@ -17,7 +17,7 @@ class SubHeadingText extends StatelessWidget {
       style: GoogleFonts.sora(
         fontSize: 14,
         fontWeight: FontWeight.w400,
-        color: const Color(0xFFA2A2A2), // Grey color from CSS
+        color: const Color(0xFFA2A2A2),
         height: 1.5,
         letterSpacing: 0.01,
       ),

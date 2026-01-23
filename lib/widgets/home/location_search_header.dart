@@ -18,7 +18,7 @@ class LocationAndSearchHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       // Reduced height so it ends right after the Search Bar
-      // This allows the next sliver (Banner) to pull up closer visually
+      // Allowing the next sliver (Banner) to pull up closer visually
       height: 230,
 
       color: const Color.fromARGB(255, 32, 32, 32),

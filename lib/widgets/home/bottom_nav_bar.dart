@@ -67,7 +67,7 @@ class _BottomNavBarState extends State<BottomNavBar>
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          // 1. Home Icon
+          // Home Icon
           GestureDetector(
             onTap: () {
               // Already on Home
@@ -75,7 +75,7 @@ class _BottomNavBarState extends State<BottomNavBar>
             child: Image.asset('assets/icons/home.png', width: 24, height: 24),
           ),
 
-          // 2. Favorites Icon
+          // Favorites Icon
           GestureDetector(
             onTap: () {
               Navigator.push(
@@ -88,7 +88,7 @@ class _BottomNavBarState extends State<BottomNavBar>
             child: Image.asset('assets/icons/heart.png', width: 24, height: 24),
           ),
 
-          // 3. Cart Icon (With Animation Logic Preserved)
+          // Cart Icon (With Animation Logic Preserved)
           Consumer<CartProvider>(
             builder: (context, cart, child) {
               // Trigger animation when cart count increases
@@ -147,7 +147,7 @@ class _BottomNavBarState extends State<BottomNavBar>
             },
           ),
 
-          // 4. Profile Icon
+          // Profile Icon
           GestureDetector(
             onTap: () {
               Navigator.push(

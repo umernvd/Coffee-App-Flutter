@@ -19,7 +19,7 @@ class HomeStickyHeaderDelegate extends SliverPersistentHeaderDelegate {
   @override
   Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
     return Container(
-      color: const Color(0xFFF9F9F9), // The white background for the bottom half
+      color: const Color(0xFFF9F9F9), // white background for the bottom half
       child: Stack(
         children: [
           // This sits BEHIND the banner and matches the header color exactly.
@@ -40,7 +40,7 @@ class HomeStickyHeaderDelegate extends SliverPersistentHeaderDelegate {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                // Promo Banner (Sits on top of the black extension)
+                // Promo Banner (stays on top of the black extension)
                 const PromoBanner(),
                 
                 const SizedBox(height: 20),

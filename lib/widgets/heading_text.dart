@@ -18,7 +18,7 @@ class HeadingText extends StatelessWidget {
         fontSize: 32,
         fontWeight: FontWeight.w600,
         color: Colors.white,
-        height: 1.5, // Line height from CSS
+        height: 1.5,
         letterSpacing: 0.005,
       ),
     );

@@ -94,7 +94,7 @@ class FavoriteCoffeeCard extends StatelessWidget {
                           shape: BoxShape.circle,
                         ),
                         child: const Icon(
-                          Icons.favorite, // Always solid because it's in favorites
+                          Icons.favorite,
                           color: Color(0xFFD17842),
                           size: 18,
                         ),

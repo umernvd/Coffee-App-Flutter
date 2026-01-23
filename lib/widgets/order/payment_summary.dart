@@ -12,7 +12,7 @@ class PaymentSummary extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Original price for strikethrough logic (Just mockup logic for now)
+    // Original price for strikethrough logic
     const double originalDeliveryFee = 2.0;
 
     return Padding(

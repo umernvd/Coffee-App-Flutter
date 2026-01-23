@@ -15,11 +15,11 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity, // Takes full width of parent
-      height: 56, // Fixed height from design
+      height: 56,
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
-          backgroundColor: const Color(0xFFC67C4E), // Brown color from CSS
+          backgroundColor: const Color(0xFFC67C4E),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),
           ),

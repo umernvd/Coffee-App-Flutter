@@ -4,7 +4,7 @@ import 'courier_badge.dart';
 import 'courier_profile.dart';
 
 class DeliveryBottomSheet extends StatelessWidget {
-  // 1. Add variable
+  // Add variable
   final String address;
 
   const DeliveryBottomSheet({super.key, required this.address});
@@ -55,9 +55,9 @@ class DeliveryBottomSheet extends StatelessWidget {
                 children: [
                   const TextSpan(text: "Delivery to "),
                   
-                  // 2. Use the dynamic address here
+                  // Using dynamic address here
                   TextSpan(
-                    text: address, // <--- CHANGED
+                    text: address,
                     style: const TextStyle(
                       fontWeight: FontWeight.w600,
                       color: Color(0xFF242424),

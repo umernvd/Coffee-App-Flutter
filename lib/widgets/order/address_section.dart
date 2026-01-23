@@ -32,7 +32,7 @@ class AddressSection extends StatelessWidget {
           ),
           const SizedBox(height: 12),
           
-          // 1. BOLD TEXT -> Shows the Address
+          // BOLD TEXT for the Address
           Text(
             address,
             style: const TextStyle(
@@ -45,7 +45,7 @@ class AddressSection extends StatelessWidget {
           
           const SizedBox(height: 6),
           
-          // 2. GREY TEXT -> Shows the Note
+          // GREY TEXT for the Note
           Text(
             note,
             style: const TextStyle(
@@ -73,7 +73,6 @@ class AddressSection extends StatelessWidget {
               ),
             ],
           ),
-          // REMOVED: The extra logic that displayed the note at the bottom
         ],
       ),
     );

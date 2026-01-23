@@ -19,7 +19,7 @@ class DetailAppBar extends StatelessWidget {
           IconButton(
             onPressed: () => Navigator.pop(context),
             icon: const Icon(Icons.arrow_back_ios_new, size: 20),
-            color: Theme.of(context).primaryColor, // Ensure it's Orange
+            color: Theme.of(context).primaryColor,
           ),
 
           // Title

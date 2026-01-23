@@ -13,20 +13,20 @@ class SlideContent extends StatefulWidget {
 }
 
 class _SlideContentState extends State<SlideContent> with AutomaticKeepAliveClientMixin {
-  // 1. Keep this page alive in memory so it doesn't reload and flicker
+  // Keep this page alive in memory so it doesn't reload and flicker
   @override
   bool get wantKeepAlive => true;
 
   @override
   Widget build(BuildContext context) {
-    super.build(context); // 2. Must call super.build
+    super.build(context); // Must call super.build
 
     return Container(
-      color: Colors.black, // 3. Ensure background is black to hide any load frames
+      color: Colors.black, // Ensure background is black to hide any load frames
       child: Stack(
         fit: StackFit.expand,
         children: [
-          // 1. Full Background Image
+          // Full Background Image
           Image.asset(
             widget.item.image,
             fit: BoxFit.cover,
@@ -43,7 +43,7 @@ class _SlideContentState extends State<SlideContent> with AutomaticKeepAliveClie
             },
           ),
 
-          // 2. Black Gradient Overlay
+          // Black Gradient Overlay
           Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -59,7 +59,7 @@ class _SlideContentState extends State<SlideContent> with AutomaticKeepAliveClie
             ),
           ),
 
-          // 3. Text Content
+          // Text Content
           Padding(
             padding: const EdgeInsets.only(top: 100.0, left: 24.0, right: 24.0),
             child: Column(

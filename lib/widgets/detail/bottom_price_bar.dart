@@ -46,7 +46,7 @@ class BottomPriceBar extends StatelessWidget {
             child: CustomButton(
               text: "Buy Now",
               onPressed: () {
-                // Create a temporary single-item list for the "Buy Now" flow
+                // Temporary single-item list for the "Buy Now" flow
                 final singleItemCart = [CartItem(coffee: coffee, quantity: 1)];
 
                 Navigator.push(

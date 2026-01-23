@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Coffee App',
       debugShowCheckedModeBanner: false,
-      theme: AppTheme.lightTheme, // Using our new centralized theme
+      theme: AppTheme.lightTheme,
       home: const OnboardingScreen(),
     );
   }

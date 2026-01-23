@@ -13,7 +13,7 @@ class SearchBarWidget extends StatelessWidget {
             height: 52,
             padding: const EdgeInsets.symmetric(horizontal: 16),
             decoration: BoxDecoration(
-              color: const Color(0xFF2A2A2A), // Dark Grey
+              color: const Color(0xFF2A2A2A), 
               borderRadius: BorderRadius.circular(12),
             ),
             child: Row(
@@ -34,16 +34,6 @@ class SearchBarWidget extends StatelessWidget {
           ),
         ),
         const SizedBox(width: 16),
-        // Filter Button
-        Container(
-          height: 52,
-          width: 52,
-          decoration: BoxDecoration(
-            color: const Color(0xFFC67C4E), // Brand Orange
-            borderRadius: BorderRadius.circular(12),
-          ),
-          child: const Icon(Icons.tune, color: Colors.white),
-        ),
       ],
     );
   }
