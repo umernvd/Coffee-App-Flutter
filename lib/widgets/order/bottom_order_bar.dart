@@ -62,7 +62,7 @@ class BottomOrderBar extends StatelessWidget {
             width: double.infinity,
             height: 56,
             child: ElevatedButton(
-              onPressed: onOrderPress, // <--- Use the passed function
+              onPressed: onOrderPress, // Use the passed function
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFFC67C4E),
                              ),
