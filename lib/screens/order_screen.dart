@@ -51,7 +51,7 @@ class _OrderScreenState extends State<OrderScreen> {
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text("Cancel", style: TextStyle(color: Colors.grey)),
+            child: const Text("Cancel", style: TextStyle(color: Color(0xFF000000))),
           ),
           ElevatedButton(
             onPressed: () {

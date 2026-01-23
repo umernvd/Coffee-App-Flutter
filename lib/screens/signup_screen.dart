@@ -27,8 +27,8 @@ class _SignupScreenState extends State<SignupScreen> {
       if (!_termsAccepted) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
-            content: Text("You must agree to the terms to proceed"),
-            backgroundColor: Color(0xFFED5565),
+            content: Text("You must agree to the terms to proceed", textAlign: TextAlign.center),
+            backgroundColor: Color(0xFFC67C4E),
           ),
         );
         return;
@@ -150,7 +150,7 @@ class _SignupScreenState extends State<SignupScreen> {
                               style: const TextStyle(
                                 fontFamily: 'Sora',
                                 fontSize: 12,
-                                color: Color(0xFFA2A2A2),
+                                color: Color(0xFF000000),
                               ),
                               children: [
                                 const TextSpan(text: "I agree to the "),
@@ -193,7 +193,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           style: TextStyle(
                             fontFamily: 'Sora',
                             fontSize: 14,
-                            color: Color(0xFFA2A2A2),
+                            color: Color(0xFF000000),
                           ),
                         ),
                         GestureDetector(

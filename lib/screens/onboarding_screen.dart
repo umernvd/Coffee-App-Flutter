@@ -38,7 +38,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   @override
   void dispose() {
-    _timer?.cancel(); // Always cancel timers to prevent memory leaks
+    _timer?.cancel(); // cancel timers to prevent memory leaks
     _pageController.dispose();
     super.dispose();
   }
@@ -66,7 +66,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     return Scaffold(
       body: Stack(
         children: [
-          // 1. The Carousel
+          // The Carousel
           PageView.builder(
             controller: _pageController,
             allowImplicitScrolling: true,
@@ -83,7 +83,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             },
           ),
 
-          // 2. Bottom UI Section (Progress Bar + Button)
+          // Bottom UI Section (Progress Bar + Button)
           Positioned(
             bottom: 50,
             left: 24,

@@ -19,7 +19,7 @@ class DetailScreen extends StatelessWidget {
         bottom: false,
         child: Column(
           children: [
-            // PASS THE COFFEE OBJECT HERE
+            // PASS THE COFFEE OBJECT
             DetailAppBar(coffee: coffee),
 
             Expanded(

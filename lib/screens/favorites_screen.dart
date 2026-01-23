@@ -9,7 +9,7 @@ class FavoritesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // RESPONSIVE GRID LOGIC (Exact match to Home Screen)
+    // RESPONSIVE GRID LOGIC like Home Screen
     var size = MediaQuery.of(context).size;
     final double itemWidth = (size.width - 48 - 20) / 2;
     const double desiredItemHeight = 245; 

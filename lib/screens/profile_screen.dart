@@ -213,7 +213,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
             const SizedBox(height: 60),
 
-            // Logout Button (Styled to match 'Order' Button)
+            // Logout Button
             SizedBox(
               width: double.infinity,
               height: 62,
