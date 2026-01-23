@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:coffee_app/models/cart_item.dart';
 import 'package:flutter/material.dart';
-import '../services/storage_service.dart'; // <--- Import Storage Service
+import '../services/storage_service.dart'; // Import Storage Service
 
 class OrderProvider extends ChangeNotifier {
   int _quantity = 1;
@@ -91,10 +91,10 @@ class OrderProvider extends ChangeNotifier {
     });
   }
   
-  // Reset state (Optional: Only if you want to clear data on logout)
+  // Reset state
   void reset() {
     _quantity = 1;
-    // We DON'T reset address/note here anymore so it persists across orders
+    // address/note persists across orders
     _showError = false;
   }
 }

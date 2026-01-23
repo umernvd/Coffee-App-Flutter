@@ -11,27 +11,27 @@ class CartProvider extends ChangeNotifier {
 
   double get totalPrice => _items.fold(0, (sum, item) => sum + item.totalPrice);
 
-  // CONSTRUCTOR: Load the cart immediately when the app starts
+  // CONSTRUCTOR: Load the cart immediately when app starts
   CartProvider() {
     _loadCart();
   }
 
-  // --- LOAD LOGIC (Deserialization) ---
+  // LOAD LOGIC (Deserialization)
   void _loadCart() {
-    // 1. Get the raw string from storage
+    // Get the raw string from storage
     final String? cartString = StorageService().getString('cart_items');
 
     if (cartString != null && cartString.isNotEmpty) {
       try {
-        // 2. Decode the JSON string into a List of Maps
+        // Decode the JSON string into a List of Maps
         final List<dynamic> jsonList = jsonDecode(cartString);
 
-        // 3. Convert each Map back into a CartItem object
+        // Convert each Map back into a CartItem object
         _items = jsonList.map((jsonItem) => CartItem.fromJson(jsonItem)).toList();
         
         notifyListeners();
       } catch (e) {
-        // Safety: If data is corrupted, start with an empty list
+        // If data is corrupted, start with an empty list
         if (kDebugMode) {
           print("Error loading cart: $e");
         }
@@ -40,20 +40,19 @@ class CartProvider extends ChangeNotifier {
     }
   }
 
-  // --- SAVE LOGIC (Serialization) ---
+  // SAVE LOGIC (Serialization)
   void _saveCart() {
-    // 1. Convert List<CartItem> to List<Map>
+    // Convert List<CartItem> to List<Map>
     List<Map<String, dynamic>> jsonList = _items.map((item) => item.toJson()).toList();
     
-    // 2. Encode List<Map> to a single JSON String
+    // Encode List<Map> to a single JSON String
     final String cartString = jsonEncode(jsonList);
     
-    // 3. Save to disk
+    // Save to disk
     StorageService().setString('cart_items', cartString);
   }
 
-  // --- ACTIONS ---
-
+  // ACTIONS
   void addToCart(Coffee coffee) {
     final index = _items.indexWhere((item) => item.coffee.name == coffee.name);
     if (index != -1) {
@@ -61,7 +60,7 @@ class CartProvider extends ChangeNotifier {
     } else {
       _items.add(CartItem(coffee: coffee));
     }
-    _saveCart(); // <--- Auto-save trigger
+    _saveCart(); // Auto-save trigger
     notifyListeners();
   }
 
@@ -71,13 +70,13 @@ class CartProvider extends ChangeNotifier {
     } else {
       _items.remove(item);
     }
-    _saveCart(); // <--- Auto-save trigger
+    _saveCart(); // Auto-save trigger
     notifyListeners();
   }
   
   void clearCart() {
     _items.clear();
-    _saveCart(); // <--- Auto-save trigger
+    _saveCart(); // Auto-save trigger
     notifyListeners();
   }
 }

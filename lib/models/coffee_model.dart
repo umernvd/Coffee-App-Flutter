@@ -1,5 +1,5 @@
 class Coffee {
-  // 1. Fields are defined here
+  // Fields
   final String name;
   final String type;
   final String price;
@@ -9,7 +9,7 @@ class Coffee {
   final String description;
   final String category;
 
-  // 2. Constructor is defined here
+  // Constructor
   Coffee({
     required this.name,
     required this.type,
