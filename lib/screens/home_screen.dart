@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart'; // For Status Bar
+import 'package:flutter/services.dart';
 import '../models/coffee_model.dart';
 import '../widgets/home/bottom_nav_bar.dart';
 import '../widgets/home/coffee_card.dart';
@@ -29,14 +29,26 @@ class _HomeScreenState extends State<HomeScreen> {
   String selectedCity = "Lahore, Pakistan";
   String searchQuery = "";
 
+  List<Coffee> _cachedCoffees = [];
+
+  @override
+  void initState() {
+    super.initState();
+    // Initial Filter run
+    _filterCoffees();
+  }
+
   // Filter Logic
-  List<Coffee> get filteredCoffees {
-    return CoffeeRepository().getCoffees().where((coffee) {
-      final matchesCategory = selectedCategory == "All Coffee" ||
-          coffee.category == selectedCategory;
-      final matchesSearch = coffee.name.toLowerCase().contains(searchQuery.toLowerCase());
-      return matchesCategory && matchesSearch;
-    }).toList();
+  void _filterCoffees() {
+    final allCoffees = CoffeeRepository().getCoffees();
+    setState(() {
+      _cachedCoffees = allCoffees.where((coffee) {
+        final matchesCategory = selectedCategory == "All Coffee" ||
+            coffee.category == selectedCategory;
+        final matchesSearch = coffee.name.toLowerCase().contains(searchQuery.toLowerCase());
+        return matchesCategory && matchesSearch;
+      }).toList();
+    });
   }
 
   @override
@@ -64,7 +76,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   if (val != null) setState(() => selectedCity = val);
                 },
                 onSearchChanged: (val) {
-                  setState(() => searchQuery = val);
+                 searchQuery = val;
+                  _filterCoffees();
                 },
               ),
             ),
@@ -76,13 +89,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 categories: categories,
                 selectedCategory: selectedCategory,
                 onCategorySelected: (category) {
-                  setState(() => selectedCategory = category);
+                  selectedCategory = category;
+                  _filterCoffees();
                 },
               ),
             ),
 
             // COFFEE GRID
-            filteredCoffees.isEmpty
+           _cachedCoffees.isEmpty
                 ? const SliverToBoxAdapter(
                     child: Padding(
                       padding: EdgeInsets.all(40.0),
@@ -99,8 +113,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         mainAxisSpacing: 20,
                       ),
                       delegate: SliverChildBuilderDelegate(
-                        (context, index) => CoffeeCard(coffee: filteredCoffees[index]),
-                        childCount: filteredCoffees.length,
+                        (context, index) => CoffeeCard(coffee: _cachedCoffees[index]),
+                        childCount: _cachedCoffees.length,
                       ),
                     ),
                   ),
