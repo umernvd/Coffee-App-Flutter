@@ -39,7 +39,7 @@ class CoffeeCard extends StatelessWidget {
             // Image and Rating Stack
             Stack(
               children: [
-                // Hero animation for smooth transition to detail screen
+                // Hero animation for transition to detail screen
                 Hero(
                   tag: 'coffee-${coffee.name}',
                   child: ClipRRect(
@@ -49,6 +49,7 @@ class CoffeeCard extends StatelessWidget {
                       height: 128,
                       width: double.infinity,
                       fit: BoxFit.cover,
+                      cacheWidth: 500,
                     ),
                   ),
                 ),

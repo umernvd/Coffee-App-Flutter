@@ -49,9 +49,10 @@ class FavoriteCoffeeCard extends StatelessWidget {
                       width: double.infinity,
                       height: double.infinity,
                       fit: BoxFit.cover,
+                      cacheWidth: 500,
                     ),
                   ),
-                  // Rating Badge (Top Left)
+                  // Rating Badge
                   Positioned(
                     top: 8,
                     left: 8,
@@ -78,7 +79,7 @@ class FavoriteCoffeeCard extends StatelessWidget {
                       ),
                     ),
                   ),
-                  // Remove/Heart Button (Top Right)
+                  // Remove/Heart Button
                   Positioned(
                     top: 8,
                     right: 8,
@@ -138,7 +139,7 @@ class FavoriteCoffeeCard extends StatelessWidget {
                       fontFamily: 'Sora',
                       fontSize: 18,
                       fontWeight: FontWeight.w600,
-                      color: Color(0xFF2F4B4E), // Dark Green/Black shade
+                      color: Color(0xFF2F4B4E),
                     ),
                   ),
                 ],
