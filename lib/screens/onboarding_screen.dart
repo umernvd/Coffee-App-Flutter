@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../models/onboarding_item.dart';
 import '../widgets/onboarding/slide_content.dart';
 import '../widgets/onboarding/progress_indicator.dart';
-import '../widgets/custom_button.dart';
+import '../widgets/onboarding/custom_button.dart';
 import './signup_screen.dart';
 import './login_screen.dart';
 

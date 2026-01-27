@@ -2,7 +2,7 @@ import 'package:coffee_app/models/cart_item.dart';
 import 'package:flutter/material.dart';
 import '../../models/coffee_model.dart';
 import '../../screens/order_screen.dart';
-import '../custom_button.dart';
+import '../onboarding/custom_button.dart';
 
 class BottomPriceBar extends StatelessWidget {
   final Coffee coffee;

@@ -4,10 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 class HeadingText extends StatelessWidget {
   final String text;
 
-  const HeadingText({
-    super.key,
-    required this.text,
-  });
+  const HeadingText({super.key, required this.text});
 
   @override
   Widget build(BuildContext context) {
