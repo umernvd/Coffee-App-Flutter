@@ -8,7 +8,7 @@ class OrderItemCard extends StatelessWidget {
   final VoidCallback onDecrement;
 
   const OrderItemCard({
-    super.key, 
+    super.key,
     required this.coffee,
     required this.quantity,
     required this.onIncrement,
@@ -23,7 +23,12 @@ class OrderItemCard extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(12),
-            child: Image.asset(coffee.imageUrl, width: 54, height: 54, fit: BoxFit.cover),
+            child: Image.asset(
+              coffee.imageUrl,
+              width: 54,
+              height: 54,
+              fit: BoxFit.cover,
+            ),
           ),
           const SizedBox(width: 12),
           Expanded(
@@ -32,44 +37,26 @@ class OrderItemCard extends StatelessWidget {
               children: [
                 Text(
                   coffee.name,
-                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Color(0xFF242424), fontFamily: 'Sora'),
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    color: Color(0xFF242424),
+                    fontFamily: 'Sora',
+                  ),
                 ),
                 const SizedBox(height: 4),
-                const Text(
-                  "Deep Foam", 
-                  style: TextStyle(fontSize: 12, color: Color(0xFFA2A2A2), fontFamily: 'Sora'),
+                Text(
+                  "\$ ${coffee.price}",
+                  style: const TextStyle(
+                    fontSize: 14,
+                    color: Color(0xFFC67C4E),
+                    fontFamily: 'Sora',
+                  ),
                 ),
               ],
             ),
           ),
-          Row(
-            children: [
-              _buildCounterButton(Icons.remove, onDecrement),
-              const SizedBox(width: 14),
-              Text(
-                "$quantity",
-                style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600, fontFamily: 'Sora'),
-              ),
-              const SizedBox(width: 14),
-              _buildCounterButton(Icons.add, onIncrement),
-            ],
-          )
         ],
-      ),
-    );
-  }
-
-  Widget _buildCounterButton(IconData icon, VoidCallback onTap) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.all(4),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          border: Border.all(color: const Color(0xFFA2A2A2)),
-          color: Colors.white,
-        ),
-        child: Icon(icon, size: 16, color: const Color(0xFF2A2A2A)),
       ),
     );
   }

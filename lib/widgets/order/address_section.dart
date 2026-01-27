@@ -32,20 +32,18 @@ class AddressSection extends StatelessWidget {
           ),
           const SizedBox(height: 12),
           
-          // BOLD TEXT for the Address
           Text(
             address,
             style: const TextStyle(
               fontSize: 14, 
               fontWeight: FontWeight.w600, 
-              color: Color(0xFF313131), 
+              color: Color(0xFFC67C4E), 
               fontFamily: 'Sora'
             ),
           ),
           
           const SizedBox(height: 6),
           
-          // GREY TEXT for the Note
           Text(
             note,
             style: const TextStyle(
@@ -68,7 +66,7 @@ class AddressSection extends StatelessWidget {
                 onTap: onAddNote,
                 child: _buildOutlineButton(
                   Icons.note_add_outlined, 
-                  "Add Note" // Label remains static
+                  "Add Note"
                 ),
               ),
             ],

@@ -25,7 +25,6 @@ class _OrderScreenState extends State<OrderScreen> {
   @override
   void initState() {
     super.initState();
-    // Reset provider state when entering screen
     Future.microtask(() => context.read<OrderProvider>().reset());
   }
 
@@ -67,10 +66,8 @@ class _OrderScreenState extends State<OrderScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // Consume the OrderProvider
     final orderProvider = context.watch<OrderProvider>();
 
-    // Calculate total dynamically
     final double subtotal = widget.cartItems.fold(
       0.0,
       (sum, item) => sum + item.totalPrice,
@@ -131,21 +128,17 @@ class _OrderScreenState extends State<OrderScreen> {
                   return OrderItemCard(
                     coffee: item.coffee,
                     quantity: item.quantity,
-                    // Use context.read to call methods on the CartProvider without rebuilding the whole screen
                     onIncrement: () {
                       context.read<CartProvider>().addToCart(item.coffee);
-                      // The OrderScreen will automatically rebuild because it's watching the CartProvider
-                      // via the Consumer in CartScreen that pushed this route, or if we wrap this in a Consumer.
-                      // For now, let's rely on the provider notification.
                       setState(
                         () {},
-                      ); // Force a rebuild to show the updated total price immediately
+                      );
                     },
                     onDecrement: () {
                       context.read<CartProvider>().removeFromCart(item);
                       setState(
                         () {},
-                      ); // Force a rebuild to show the updated total price immediately
+                      );
                     },
                   );
                 }),

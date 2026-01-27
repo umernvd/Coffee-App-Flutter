@@ -23,7 +23,7 @@ class DiscountBadge extends StatelessWidget {
               style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
-                color: Color(0xFF313131),
+                color: Color(0xFFC67C4E),
                 fontFamily: 'Sora',
               ),
             ),
