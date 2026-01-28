@@ -37,7 +37,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   // Load Data from Local Storage
   void _loadUserData() {
-    // We fetch data synchronously since SharedPreferences is fast
     final storedName = StorageService().getString('user_name');
     final storedEmail = StorageService().getString('user_email');
 
@@ -77,7 +76,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
         content: Text("Profile updated successfully"),
-        backgroundColor: Color(0xFFC67C4E), // Primary Orange
+        backgroundColor: Color(0xFFC67C4E),
         duration: Duration(seconds: 1),
       ),
     );
@@ -103,7 +102,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             onPressed: () => Navigator.pop(context),
             child: const Text(
               "Cancel",
-              style: TextStyle(color: Color.fromARGB(255, 0, 0, 0), fontFamily: 'Sora'),
+              style: TextStyle(color: Color(0xFF000000), fontFamily: 'Sora'),
             ),
           ),
           TextButton(
@@ -137,10 +136,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         centerTitle: true,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new, color: Color(0xFFC67C4E)),
-          onPressed: () => Navigator.pop(context),
-        ),
+        automaticallyImplyLeading: false,
         title: const Text(
           "Profile",
           style: TextStyle(
@@ -222,8 +218,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(
                     0xFFC67C4E,
-                  ), // Primary Coffee Color
-                  elevation: 0, // Flat look
+                  ), 
+                  elevation: 0,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16),
                   ),

@@ -24,16 +24,13 @@ class FavoritesScreen extends StatelessWidget {
           return CustomScrollView(
             slivers: [
               // Sticky App Bar
-              SliverAppBar(
-                backgroundColor: const Color(0xFFF9F9F9),
+              const SliverAppBar(
+                backgroundColor: Color(0xFFF9F9F9),
                 elevation: 0,
                 pinned: true,
                 centerTitle: true,
-                leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios_new, color: Theme.of(context).primaryColor, size: 20),
-          onPressed: () => Navigator.pop(context),
-        ),
-                title: const Text(
+                automaticallyImplyLeading: false,
+                title: Text(
                   "Favorites",
                   style: TextStyle(
                     fontFamily: 'Sora',

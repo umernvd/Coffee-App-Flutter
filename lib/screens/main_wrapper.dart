@@ -36,7 +36,6 @@ class _MainWrapperState extends State<MainWrapper> {
       
       // Navigation Bar
       bottomNavigationBar: Container(
-        // shadow add the top of bar
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 10, offset: const Offset(0, -5)),
@@ -48,14 +47,14 @@ class _MainWrapperState extends State<MainWrapper> {
           items: const [
             // Home
             BottomNavigationBarItem(
-              icon: Icon(Icons.home_outlined),
-              activeIcon: Icon(Icons.home_filled),
+              icon: Icon(Icons.home_outlined, size: 30),
+              activeIcon: Icon(Icons.home_filled, size: 30),
               label: 'Home',
             ),
             // Favorites
             BottomNavigationBarItem(
-              icon: Icon(Icons.favorite_border_rounded),
-              activeIcon: Icon(Icons.favorite),
+              icon: Icon(Icons.favorite_border_rounded, size: 30),
+              activeIcon: Icon(Icons.favorite, size: 30),
               label: 'Favorites',
             ),
             // Cart
@@ -65,8 +64,8 @@ class _MainWrapperState extends State<MainWrapper> {
             ),
             // Profile
             BottomNavigationBarItem(
-              icon: Icon(Icons.person_outline_rounded),
-              activeIcon: Icon(Icons.person),
+              icon: Icon(Icons.person_outline_rounded, size: 30),
+              activeIcon: Icon(Icons.person, size: 30),
               label: 'Profile',
             ),
           ],

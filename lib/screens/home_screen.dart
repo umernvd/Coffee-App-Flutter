@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../models/coffee_model.dart';
-import '../widgets/home/bottom_nav_bar.dart';
 import '../widgets/home/coffee_card.dart';
 import '../widgets/home/location_search_header.dart';
-import '../widgets/home/sticky_header_delegate.dart'; 
+import '../widgets/home/sticky_header_delegate.dart';
 import '../repositories/coffee_repository.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -17,11 +16,19 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   // Data
   final List<String> categories = [
-    "All Coffee", "Cappuccino", "Espresso", "Latte", "Americano",
+    "All Coffee",
+    "Cappuccino",
+    "Espresso",
+    "Latte",
+    "Americano",
   ];
   final List<String> cities = [
-    "Karachi, Pakistan", "Lahore, Pakistan", "Islamabad, Pakistan",
-    "Peshawar, Pakistan", "Quetta, Pakistan", "Multan, Pakistan",
+    "Karachi, Pakistan",
+    "Lahore, Pakistan",
+    "Islamabad, Pakistan",
+    "Peshawar, Pakistan",
+    "Quetta, Pakistan",
+    "Multan, Pakistan",
   ];
 
   // State
@@ -43,9 +50,12 @@ class _HomeScreenState extends State<HomeScreen> {
     final allCoffees = CoffeeRepository().getCoffees();
     setState(() {
       _cachedCoffees = allCoffees.where((coffee) {
-        final matchesCategory = selectedCategory == "All Coffee" ||
+        final matchesCategory =
+            selectedCategory == "All Coffee" ||
             coffee.category == selectedCategory;
-        final matchesSearch = coffee.name.toLowerCase().contains(searchQuery.toLowerCase());
+        final matchesSearch = coffee.name.toLowerCase().contains(
+          searchQuery.toLowerCase(),
+        );
         return matchesCategory && matchesSearch;
       }).toList();
     });
@@ -61,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: const SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
-        statusBarIconBrightness: Brightness.light, 
+        statusBarIconBrightness: Brightness.light,
       ),
       child: Scaffold(
         backgroundColor: const Color(0xFFF9F9F9),
@@ -76,7 +86,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   if (val != null) setState(() => selectedCity = val);
                 },
                 onSearchChanged: (val) {
-                 searchQuery = val;
+                  searchQuery = val;
                   _filterCoffees();
                 },
               ),
@@ -96,11 +106,16 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
 
             // COFFEE GRID
-           _cachedCoffees.isEmpty
+            _cachedCoffees.isEmpty
                 ? const SliverToBoxAdapter(
                     child: Padding(
                       padding: EdgeInsets.all(40.0),
-                      child: Center(child: Text("No coffee found!", style: TextStyle(fontFamily: 'Sora'))),
+                      child: Center(
+                        child: Text(
+                          "No coffee found!",
+                          style: TextStyle(fontFamily: 'Sora'),
+                        ),
+                      ),
                     ),
                   )
                 : SliverPadding(
@@ -113,17 +128,17 @@ class _HomeScreenState extends State<HomeScreen> {
                         mainAxisSpacing: 20,
                       ),
                       delegate: SliverChildBuilderDelegate(
-                        (context, index) => CoffeeCard(coffee: _cachedCoffees[index]),
+                        (context, index) =>
+                            CoffeeCard(coffee: _cachedCoffees[index]),
                         childCount: _cachedCoffees.length,
                       ),
                     ),
                   ),
-            
+
             // Bottom Spacer
             const SliverToBoxAdapter(child: SizedBox(height: 20)),
           ],
         ),
-        bottomNavigationBar: const BottomNavBar(),
       ),
     );
   }

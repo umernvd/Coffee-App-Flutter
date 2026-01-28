@@ -36,7 +36,7 @@ class AppTheme {
     ),
 
     // Icon Styles
-    iconTheme: const IconThemeData(color: textPrimary),
+    iconTheme: const IconThemeData(color: Color(0xFF000000)),
 
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: white,

@@ -1,5 +1,6 @@
 // ignore_for_file: deprecated_member_use
 
+import 'package:coffee_app/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../models/coffee_model.dart';
@@ -137,7 +138,9 @@ class CoffeeCard extends StatelessWidget {
                   const SizedBox(height: 4),
                   Text(
                     coffee.type,
-                    style: Theme.of(context).textTheme.bodyMedium,
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      color: AppTheme.primaryColor,
+                    ),
                   ),
                   const SizedBox(height: 12),
                   Row(

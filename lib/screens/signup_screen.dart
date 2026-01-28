@@ -1,9 +1,9 @@
 // ignore_for_file: deprecated_member_use
 
+import 'package:coffee_app/screens/main_wrapper.dart';
 import 'package:flutter/material.dart';
 import '../../widgets/auth/custom_text_field.dart';
 import '../../widgets/auth/auth_button.dart';
-import './home_screen.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -40,11 +40,8 @@ class _SignupScreenState extends State<SignupScreen> {
 
       if (mounted) {
         setState(() => _isLoading = false);
-        Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(builder: (context) => const HomeScreen()),
-          (route) => false,
-        );
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const MainWrapper()));
+
       }
     }
   }
