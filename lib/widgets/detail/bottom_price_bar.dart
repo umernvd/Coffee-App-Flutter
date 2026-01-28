@@ -23,10 +23,9 @@ class BottomPriceBar extends StatelessWidget {
             children: [
               const Text(
                 "Price",
-
                 style: TextStyle(
                   fontSize: 14,
-                  color: Color(0xFF9B9B9B),
+                  color: Color(0xFF000000),
                   fontFamily: 'Sora',
                 ),
               ),

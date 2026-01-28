@@ -34,13 +34,13 @@ class InfoSection extends StatelessWidget {
                     coffee.type,
                     style: GoogleFonts.sora(
                       fontSize: 12,
-                      color: const Color(0xFF9B9B9B),
+                      color: const Color(0xFFC67C4E),
                     ),
                   ),
                   const SizedBox(height: 4),
                   Row(
                     children: [
-                      const Icon(Icons.star, color: Color(0xFFFBBE21), size: 20),
+                      const Icon(Icons.star, color: Color(0xFFC67C4E), size: 20),
                       const SizedBox(width: 4),
                       Text(
                         "${coffee.rating}",
@@ -93,7 +93,7 @@ class InfoSection extends StatelessWidget {
               text: coffee.description,
               style: GoogleFonts.sora(
                 fontSize: 14,
-                color: const Color(0xFF9B9B9B),
+                color: const Color(0xFFC67C4E),
                 height: 1.5,
               ),
             ),

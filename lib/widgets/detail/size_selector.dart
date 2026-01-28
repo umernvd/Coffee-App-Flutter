@@ -26,7 +26,7 @@ class _SizeSelectorState extends State<SizeSelector> {
             style: GoogleFonts.sora(
               fontSize: 16,
               fontWeight: FontWeight.w600,
-              color: const Color(0xFF2F2D2C),
+              color: const Color(0xFF000000),
             ),
           ),
           const SizedBox(height: 12),
@@ -50,7 +50,7 @@ class _SizeSelectorState extends State<SizeSelector> {
                     decoration: BoxDecoration(
                       color: isSelected ? const Color(0xFFF9F5F2) : Colors.white,
                       border: Border.all(
-                        color: isSelected ? const Color(0xFFC67C4E) : const Color(0xFFEAEAEA),
+                        color: isSelected ? const Color(0xFFC67C4E) : const Color.fromARGB(255, 0, 0, 0),
                       ),
                       borderRadius: BorderRadius.circular(12),
                     ),

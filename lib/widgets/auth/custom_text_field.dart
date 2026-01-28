@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CustomTextField extends StatefulWidget {
   final String label;
@@ -59,10 +60,10 @@ class _CustomTextFieldState extends State<CustomTextField> {
           ),
           decoration: InputDecoration(
             hintText: widget.hint,
-            hintStyle: const TextStyle(
-              color: Color(0xFFA2A2A2), // textSecondary
+            hintStyle: TextStyle(
+              color: const Color(0xFFA2A2A2), // textSecondary
               fontSize: 14,
-              fontFamily: 'Sora',
+              fontFamily: GoogleFonts.sora().fontFamily,
             ),
             filled: true,
             fillColor: Colors.white,
@@ -88,7 +89,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
               borderRadius: BorderRadius.circular(12),
               borderSide: const BorderSide(
                 color: Color(0xFFED5565),
-              ), // System Red
+              ),
             ),
 
             // Password Toggle Icon
@@ -96,7 +97,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                 ? IconButton(
                     icon: Icon(
                       _obscureText ? Icons.visibility_off : Icons.visibility,
-                      color: const Color.fromARGB(255, 0, 0, 0),
+                      color: const Color(0xFF000000),
                     ),
                     onPressed: () {
                       setState(() {

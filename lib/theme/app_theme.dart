@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
   AppTheme._();
@@ -13,7 +14,7 @@ class AppTheme {
   static final ThemeData lightTheme = ThemeData(
     scaffoldBackgroundColor: backgroundColor,
     primaryColor: primaryColor,
-    fontFamily: 'Sora',
+    fontFamily: GoogleFonts.sora().fontFamily,
     
     // Default Text Styles
     textTheme: const TextTheme(
