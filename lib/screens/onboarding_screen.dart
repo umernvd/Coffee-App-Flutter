@@ -132,7 +132,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         fontFamily: GoogleFonts.sora().fontFamily,
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
-                        color: const Color(0xFF000000),
+                        color: const Color(0xFFFFFFFF),
                       ),
                       children: [
                         TextSpan(

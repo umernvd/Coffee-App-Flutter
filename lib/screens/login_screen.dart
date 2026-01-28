@@ -31,7 +31,12 @@ class _LoginScreenState extends State<LoginScreen> {
       if (mounted) {
         setState(() => _isLoading = false);
         // Navigate to Home
-       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const MainWrapper()));
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => const MainWrapper()),
+          (route) =>
+              false, // This function returns false to remove ALL previous routes
+        );
       }
     }
   }
@@ -40,7 +45,6 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-
       body: Stack(
         children: [
           SafeArea(
@@ -141,7 +145,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               style: TextStyle(
                                 fontFamily: GoogleFonts.sora().fontFamily,
                                 fontSize: 12,
-                                color: const Color(0xFFC67C4E), // Primary Color
+                                color: const Color(0xFFC67C4E),
                               ),
                             ),
                           ),
@@ -155,6 +159,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         isLoading: _isLoading,
                         onPressed: _handleLogin,
                       ),
+
                       const SizedBox(height: 24),
 
                       // Footer
@@ -190,7 +195,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 20), // Bottom Safe Area buffer
+                      const SizedBox(height: 20), // Bottom Safe Area
                     ],
                   ),
                 ),

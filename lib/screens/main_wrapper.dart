@@ -27,48 +27,56 @@ class _MainWrapperState extends State<MainWrapper> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      // IndexedStack preserves state (Scroll position, text input)
-      body: IndexedStack(
-        index: _selectedIndex,
-        children: _screens,
-      ),
-      
-      // Navigation Bar
-      bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-          boxShadow: [
-            BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 10, offset: const Offset(0, -5)),
-          ],
-        ),
-        child: BottomNavigationBar(
-          currentIndex: _selectedIndex,
-          onTap: (index) => setState(() => _selectedIndex = index),
-          items: const [
-            // Home
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home_outlined, size: 30),
-              activeIcon: Icon(Icons.home_filled, size: 30),
-              label: 'Home',
-            ),
-            // Favorites
-            BottomNavigationBarItem(
-              icon: Icon(Icons.favorite_border_rounded, size: 30),
-              activeIcon: Icon(Icons.favorite, size: 30),
-              label: 'Favorites',
-            ),
-            // Cart
-            BottomNavigationBarItem(
-              icon: CartBadgeIcon(),
-              label: 'Cart',
-            ),
-            // Profile
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person_outline_rounded, size: 30),
-              activeIcon: Icon(Icons.person, size: 30),
-              label: 'Profile',
-            ),
-          ],
+    return WillPopScope(
+      onWillPop: () async {
+        if (_selectedIndex != 0) {
+          // If not on Home, go to Home
+          setState(() => _selectedIndex = 0);
+          return false; // Do not exit app
+        }
+        return true; // If on Home, exit app
+      },
+      child: Scaffold(
+        // IndexedStack preserves state (Scroll position, text input)
+        body: IndexedStack(index: _selectedIndex, children: _screens),
+
+        // Navigation Bar
+        bottomNavigationBar: Container(
+          decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.05),
+                blurRadius: 10,
+                offset: const Offset(0, -5),
+              ),
+            ],
+          ),
+          child: BottomNavigationBar(
+            currentIndex: _selectedIndex,
+            onTap: (index) => setState(() => _selectedIndex = index),
+            items: const [
+              // Home
+              BottomNavigationBarItem(
+                icon: Icon(Icons.home_outlined, size: 30),
+                activeIcon: Icon(Icons.home_filled, size: 30),
+                label: 'Home',
+              ),
+              // Favorites
+              BottomNavigationBarItem(
+                icon: Icon(Icons.favorite_border_rounded, size: 30),
+                activeIcon: Icon(Icons.favorite, size: 30),
+                label: 'Favorites',
+              ),
+              // Cart
+              BottomNavigationBarItem(icon: CartBadgeIcon(), label: 'Cart'),
+              // Profile
+              BottomNavigationBarItem(
+                icon: Icon(Icons.person_outline_rounded, size: 30),
+                activeIcon: Icon(Icons.person, size: 30),
+                label: 'Profile',
+              ),
+            ],
+          ),
         ),
       ),
     );
