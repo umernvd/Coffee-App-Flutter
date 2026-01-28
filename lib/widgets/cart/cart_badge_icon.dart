@@ -16,7 +16,7 @@ class CartBadgeIcon extends StatelessWidget {
           label: Text(itemCount.toString()),
           backgroundColor: Theme.of(context).primaryColor,
           textColor: Colors.white,
-          child: const Icon(Icons.shopping_cart_outlined, size: 30),
+          child: const Icon(Icons.shopping_bag_outlined, size: 30),
         );
       },
     );

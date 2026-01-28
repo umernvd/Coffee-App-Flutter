@@ -58,13 +58,13 @@ class _MainWrapperState extends State<MainWrapper> {
               // Home
               BottomNavigationBarItem(
                 icon: Icon(Icons.home_outlined, size: 30),
-                activeIcon: Icon(Icons.home_filled, size: 30),
+                activeIcon: Icon(Icons.home_rounded, size: 30),
                 label: 'Home',
               ),
               // Favorites
               BottomNavigationBarItem(
                 icon: Icon(Icons.favorite_border_rounded, size: 30),
-                activeIcon: Icon(Icons.favorite, size: 30),
+                activeIcon: Icon(Icons.favorite_rounded, size: 30),
                 label: 'Favorites',
               ),
               // Cart
@@ -72,7 +72,7 @@ class _MainWrapperState extends State<MainWrapper> {
               // Profile
               BottomNavigationBarItem(
                 icon: Icon(Icons.person_outline_rounded, size: 30),
-                activeIcon: Icon(Icons.person, size: 30),
+                activeIcon: Icon(Icons.person_rounded, size: 30),
                 label: 'Profile',
               ),
             ],

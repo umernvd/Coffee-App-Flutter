@@ -15,12 +15,24 @@ class AppTheme {
     scaffoldBackgroundColor: backgroundColor,
     primaryColor: primaryColor,
     fontFamily: GoogleFonts.sora().fontFamily,
-    
+
     // Default Text Styles
     textTheme: const TextTheme(
-      displayLarge: TextStyle(fontSize: 32, fontWeight: FontWeight.w600, color: textPrimary),
-      titleLarge: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: textPrimary),
-      titleMedium: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: textPrimary),
+      displayLarge: TextStyle(
+        fontSize: 32,
+        fontWeight: FontWeight.w600,
+        color: textPrimary,
+      ),
+      titleLarge: TextStyle(
+        fontSize: 18,
+        fontWeight: FontWeight.w600,
+        color: textPrimary,
+      ),
+      titleMedium: TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.w600,
+        color: textPrimary,
+      ),
       bodyLarge: TextStyle(fontSize: 14, color: textPrimary),
       bodyMedium: TextStyle(fontSize: 12, color: textSecondary),
     ),
@@ -46,9 +58,9 @@ class AppTheme {
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: white,
       elevation: 10,
-      selectedItemColor: primaryColor,      
-      unselectedItemColor: Color(0xFF000000),   
-      showSelectedLabels: false,            
+      selectedItemColor: primaryColor,
+      unselectedItemColor: Color(0xFF000000),
+      showSelectedLabels: false,
       showUnselectedLabels: false,
       type: BottomNavigationBarType.fixed,
     ),
