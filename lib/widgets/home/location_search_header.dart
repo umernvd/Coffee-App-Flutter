@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class LocationAndSearchHeader extends StatelessWidget {
   final String selectedCity;
@@ -28,12 +29,12 @@ class LocationAndSearchHeader extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.end, // Push content to bottom
         children: [
-          const Text(
+          Text(
             "Location",
             style: TextStyle(
               fontSize: 12,
-              color: Color(0xFFA2A2A2),
-              fontFamily: 'Sora',
+              color: const Color(0xFFA2A2A2),
+              fontFamily: GoogleFonts.sora().fontFamily,
             ),
           ),
           const SizedBox(height: 4),
@@ -42,11 +43,11 @@ class LocationAndSearchHeader extends StatelessWidget {
             icon: const Icon(Icons.keyboard_arrow_down, color: Colors.white),
             dropdownColor: const Color(0xFFC67C4E),
             underline: const SizedBox(),
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 14,
               color: Colors.white,
               fontWeight: FontWeight.w600,
-              fontFamily: 'Sora',
+              fontFamily: GoogleFonts.sora().fontFamily,
             ),
             onChanged: onCityChanged,
             items: cities.map<DropdownMenuItem<String>>((String value) {
@@ -68,16 +69,16 @@ class LocationAndSearchHeader extends StatelessWidget {
                 Expanded(
                   child: TextField(
                     onChanged: onSearchChanged,
-                    style: const TextStyle(
+                    style: TextStyle(
                       color: Colors.white,
-                      fontFamily: 'Sora',
+                      fontFamily: GoogleFonts.sora().fontFamily,
                     ),
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
                       hintText: "Search coffee",
                       hintStyle: TextStyle(
-                        color: Color(0xFFA2A2A2),
+                        color: const Color(0xFFA2A2A2),
                         fontSize: 14,
-                        fontFamily: 'Sora',
+                        fontFamily: GoogleFonts.sora().fontFamily,
                       ),
                       border: InputBorder.none,
                     ),

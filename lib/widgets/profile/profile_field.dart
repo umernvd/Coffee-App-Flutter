@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ProfileField extends StatelessWidget {
   final String label;
@@ -24,10 +25,10 @@ class ProfileField extends StatelessWidget {
         // Label
         Text(
           label,
-          style: const TextStyle(
-            fontFamily: 'Sora',
+          style: TextStyle(
+            fontFamily: GoogleFonts.sora().fontFamily,
             fontSize: 12,
-            color: Color(0xFFC67C4E),
+            color: const Color(0xFFC67C4E),
           ),
         ),
         const SizedBox(height: 8),
@@ -44,11 +45,11 @@ class ProfileField extends StatelessWidget {
                 child: TextField(
                   controller: controller,
                   keyboardType: keyboardType,
-                  style: const TextStyle(
-                    fontFamily: 'Sora',
+                  style: TextStyle(
+                    fontFamily: GoogleFonts.sora().fontFamily,
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
-                    color: Color(0xFF2F2D2C),
+                    color: const Color(0xFF2F2D2C),
                   ),
                   decoration: const InputDecoration(
                     border: InputBorder.none,
@@ -65,11 +66,11 @@ class ProfileField extends StatelessWidget {
                 ),
                 child: Text(
                   currentValue,
-                  style: const TextStyle(
-                    fontFamily: 'Sora',
+                  style: TextStyle(
+                    fontFamily: GoogleFonts.sora().fontFamily,
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
-                    color: Color(0xFF2F2D2C),
+                    color: const Color(0xFF2F2D2C),
                   ),
                 ),
               ),

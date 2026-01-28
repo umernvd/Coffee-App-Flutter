@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import '../providers/favorites_provider.dart';
 import '../widgets/favorites/favorite_coffee_card.dart';
@@ -24,8 +25,8 @@ class FavoritesScreen extends StatelessWidget {
           return CustomScrollView(
             slivers: [
               // Sticky App Bar
-              const SliverAppBar(
-                backgroundColor: Color(0xFFF9F9F9),
+              SliverAppBar(
+                backgroundColor: const Color(0xFFF9F9F9),
                 elevation: 0,
                 pinned: true,
                 centerTitle: true,
@@ -33,10 +34,10 @@ class FavoritesScreen extends StatelessWidget {
                 title: Text(
                   "Favorites",
                   style: TextStyle(
-                    fontFamily: 'Sora',
+                    fontFamily: GoogleFonts.sora().fontFamily,
                     fontSize: 18,
                     fontWeight: FontWeight.w600,
-                    color: Color(0xFFD17842),
+                    color: const Color(0xFFD17842),
                   ),
                 ),
               ),

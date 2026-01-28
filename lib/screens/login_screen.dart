@@ -2,6 +2,7 @@
 
 import 'package:coffee_app/screens/main_wrapper.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../widgets/auth/custom_text_field.dart';
 import '../../widgets/auth/auth_button.dart';
 import 'signup_screen.dart';
@@ -121,12 +122,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                       setState(() => _rememberMe = val),
                                 ),
                               ),
-                              const Text(
+                              Text(
                                 "Remember Me",
                                 style: TextStyle(
-                                  fontFamily: 'Sora',
+                                  fontFamily: GoogleFonts.sora().fontFamily,
                                   fontSize: 12,
-                                  color: Color(0xFFC67C4E),
+                                  color: const Color(0xFFC67C4E),
                                 ),
                               ),
                             ],
@@ -135,12 +136,12 @@ class _LoginScreenState extends State<LoginScreen> {
                             onPressed: () {
                               // Forgot Password Logic
                             },
-                            child: const Text(
+                            child: Text(
                               "Forgot Password?",
                               style: TextStyle(
-                                fontFamily: 'Sora',
+                                fontFamily: GoogleFonts.sora().fontFamily,
                                 fontSize: 12,
-                                color: Color(0xFFC67C4E), // Primary Color
+                                color: const Color(0xFFC67C4E), // Primary Color
                               ),
                             ),
                           ),
@@ -160,12 +161,12 @@ class _LoginScreenState extends State<LoginScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Text(
+                          Text(
                             "Don't have an account? ",
                             style: TextStyle(
-                              fontFamily: 'Sora',
+                              fontFamily: GoogleFonts.sora().fontFamily,
                               fontSize: 14,
-                              color: Color(0xFFA2A2A2),
+                              color: const Color(0xFF000000),
                             ),
                           ),
                           GestureDetector(
@@ -180,7 +181,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             child: Text(
                               "Sign Up",
                               style: TextStyle(
-                                fontFamily: 'Sora',
+                                fontFamily: GoogleFonts.sora().fontFamily,
                                 fontSize: 14,
                                 fontWeight: FontWeight.bold,
                                 color: Theme.of(context).primaryColor,

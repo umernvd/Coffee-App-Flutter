@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class PaymentSummary extends StatelessWidget {
   final double itemPrice;
@@ -20,9 +21,14 @@ class PaymentSummary extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
+          Text(
             "Payment Summary",
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Color(0xFF242424), fontFamily: 'Sora'),
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+              color: const Color.fromARGB(255, 0, 0, 0),
+              fontFamily: GoogleFonts.sora().fontFamily,
+            ),
           ),
           const SizedBox(height: 12),
           
@@ -32,20 +38,34 @@ class PaymentSummary extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
+              Text(
                 "Delivery Fee",
-                style: TextStyle(fontSize: 14, color: Color(0xFF313131), fontFamily: 'Sora'),
+                style: TextStyle(
+                  fontSize: 14,
+                  color: const Color(0xFF313131),
+                  fontFamily: GoogleFonts.sora().fontFamily,
+                ),
               ),
               Row(
                 children: [
                   Text(
                     "\$ ${originalDeliveryFee.toStringAsFixed(1)} ",
-                    style: const TextStyle(fontSize: 14, decoration: TextDecoration.lineThrough, color: Color(0xFF2A2A2A), fontFamily: 'Sora'),
+                    style: TextStyle(
+                      fontSize: 14,
+                      decoration: TextDecoration.lineThrough,
+                      color: const Color(0xFF2A2A2A),
+                      fontFamily: GoogleFonts.sora().fontFamily,
+                    ),
                   ),
                   const SizedBox(width: 4),
                   Text(
                     "\$ ${deliveryFee.toStringAsFixed(1)}",
-                    style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Color(0xFF242424), fontFamily: 'Sora'),
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                      color: const Color(0xFF242424),
+                      fontFamily: GoogleFonts.sora().fontFamily,
+                    ),
                   ),
                 ],
               )
@@ -62,11 +82,20 @@ class PaymentSummary extends StatelessWidget {
       children: [
         Text(
           label,
-          style: const TextStyle(fontSize: 14, color: Color(0xFF313131), fontFamily: 'Sora'),
+          style: TextStyle(
+            fontSize: 14,
+            color: const Color(0xFF313131),
+            fontFamily: GoogleFonts.sora().fontFamily,
+          ),
         ),
         Text(
           "\$ ${value.toStringAsFixed(2)}",
-          style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Color(0xFF242424), fontFamily: 'Sora'),
+          style: TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.w600,
+            color: const Color(0xFF242424),
+            fontFamily: GoogleFonts.sora().fontFamily,
+          ),
         ),
       ],
     );

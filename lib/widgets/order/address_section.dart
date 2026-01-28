@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AddressSection extends StatelessWidget {
   final String address;
@@ -21,24 +22,24 @@ class AddressSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
+          Text(
             "Delivery Address",
             style: TextStyle(
               fontSize: 16, 
               fontWeight: FontWeight.w600, 
-              color: Color(0xFF242424), 
-              fontFamily: 'Sora'
+              color: const Color.fromARGB(255, 0, 0, 0), 
+              fontFamily: GoogleFonts.sora().fontFamily
             ),
           ),
           const SizedBox(height: 12),
           
           Text(
             address,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 14, 
               fontWeight: FontWeight.w600, 
-              color: Color(0xFFC67C4E), 
-              fontFamily: 'Sora'
+              color: const Color(0xFFC67C4E), 
+              fontFamily: GoogleFonts.sora().fontFamily
             ),
           ),
           
@@ -46,10 +47,10 @@ class AddressSection extends StatelessWidget {
           
           Text(
             note,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 12, 
-              color: Color(0xFFA2A2A2), 
-              fontFamily: 'Sora'
+              color: const Color(0xFFA2A2A2), 
+              fontFamily: GoogleFonts.sora().fontFamily
             ),
           ),
           
@@ -90,10 +91,10 @@ class AddressSection extends StatelessWidget {
           const SizedBox(width: 4),
           Text(
             text,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 12, 
-              color: Color(0xFF313131), 
-              fontFamily: 'Sora'
+              color: const Color(0xFF313131), 
+              fontFamily: GoogleFonts.sora().fontFamily
             ),
           ),
         ],

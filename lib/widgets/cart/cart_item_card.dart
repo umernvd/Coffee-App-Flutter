@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import '../../models/cart_item.dart';
 import '../../providers/cart_provider.dart';
@@ -38,30 +39,30 @@ class CartItemCard extends StatelessWidget {
               children: [
                 Text(
                   cartItem.coffee.name,
-                  style: const TextStyle(
-                    fontFamily: 'Sora',
+                  style: TextStyle(
+                    fontFamily: GoogleFonts.sora().fontFamily,
                     fontWeight: FontWeight.w600,
                     fontSize: 16,
-                    color: Color(0xFF000000),
+                    color: const Color(0xFF000000),
                   ),
                 ),
                 const SizedBox(height: 4),
                 Text(
                   cartItem.coffee.type,
-                  style: const TextStyle(
-                    fontFamily: 'Sora',
+                  style: TextStyle(
+                    fontFamily: GoogleFonts.sora().fontFamily,
                     fontSize: 12,
-                    color: Color(0xFF000000),
+                    color: const Color(0xFF000000),
                   ),
                 ),
                 const SizedBox(height: 8),
                 Text(
                   "\$ ${cartItem.coffee.price}",
-                  style: const TextStyle(
-                    fontFamily: 'Sora',
+                  style: TextStyle(
+                    fontFamily: GoogleFonts.sora().fontFamily,
                     fontWeight: FontWeight.w600,
                     fontSize: 16,
-                    color: Color(0xFFC67C4E),
+                    color: const Color(0xFFC67C4E),
                   ),
                 ),
               ],
@@ -94,11 +95,11 @@ class CartItemCard extends StatelessWidget {
                     child: Text(
                       "$quantity",
                       textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontFamily: 'Sora',
+                      style: TextStyle(
+                        fontFamily: GoogleFonts.sora().fontFamily,
                         fontWeight: FontWeight.w600,
                         fontSize: 16,
-                        color: Color(0xFFC67C4E),
+                        color: const Color(0xFFC67C4E),
                       ),
                     ),
                   ),

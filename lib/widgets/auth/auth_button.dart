@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AuthButton extends StatelessWidget {
   final String text;
@@ -26,8 +27,8 @@ class AuthButton extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),
           ),
-          textStyle: const TextStyle(
-            fontFamily: 'Sora',
+          textStyle: TextStyle(
+            fontFamily: GoogleFonts.sora().fontFamily,
             fontSize: 16,
             fontWeight: FontWeight.w600,
           ),

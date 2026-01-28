@@ -1,6 +1,7 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import '../../models/coffee_model.dart';
 import '../../providers/favorites_provider.dart';
@@ -68,11 +69,11 @@ class FavoriteCoffeeCard extends StatelessWidget {
                           const SizedBox(width: 4),
                           Text(
                             "${coffee.rating}",
-                            style: const TextStyle(
+                            style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
                               fontSize: 10,
-                              fontFamily: 'Sora',
+                              fontFamily: GoogleFonts.sora().fontFamily,
                             ),
                           ),
                         ],
@@ -116,30 +117,30 @@ class FavoriteCoffeeCard extends StatelessWidget {
                     coffee.name,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      fontFamily: 'Sora',
+                    style: TextStyle(
+                      fontFamily: GoogleFonts.sora().fontFamily,
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
-                      color: Color(0xFF2F2D2C),
+                      color: const Color.fromARGB(255, 0, 0, 0),
                     ),
                   ),
                   const SizedBox(height: 4),
                   Text(
                     coffee.type,
-                    style: const TextStyle(
-                      fontFamily: 'Sora',
+                    style: TextStyle(
+                      fontFamily: GoogleFonts.sora().fontFamily,
                       fontSize: 12,
-                      color: Color(0xFFA2A2A2),
+                      color: const Color(0xFFA2A2A2),
                     ),
                   ),
                   const SizedBox(height: 12),
                   Text(
                     "\$ ${coffee.price}",
-                    style: const TextStyle(
-                      fontFamily: 'Sora',
+                    style: TextStyle(
+                      fontFamily: GoogleFonts.sora().fontFamily,
                       fontSize: 18,
                       fontWeight: FontWeight.w600,
-                      color: Color(0xFF2F4B4E),
+                      color: const Color(0xFF2F4B4E),
                     ),
                   ),
                 ],

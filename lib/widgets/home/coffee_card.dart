@@ -2,6 +2,7 @@
 
 import 'package:coffee_app/theme/app_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import '../../models/coffee_model.dart';
 import '../../providers/cart_provider.dart';
@@ -77,11 +78,11 @@ class CoffeeCard extends StatelessWidget {
                         const SizedBox(width: 4),
                         Text(
                           "${coffee.rating}",
-                          style: const TextStyle(
+                          style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
                             fontSize: 10,
-                            fontFamily: 'Sora',
+                            fontFamily: GoogleFonts.sora().fontFamily,
                           ),
                         ),
                       ],
@@ -152,7 +153,7 @@ class CoffeeCard extends StatelessWidget {
                           fontSize: 18,
                           fontWeight: FontWeight.w600,
                           color: Theme.of(context).textTheme.titleLarge?.color,
-                          fontFamily: 'Sora',
+                          fontFamily: GoogleFonts.sora().fontFamily,
                         ),
                       ),
                       // Add Button

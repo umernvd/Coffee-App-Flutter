@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../models/coffee_model.dart';
 import '../widgets/home/coffee_card.dart';
 import '../widgets/home/location_search_header.dart';
@@ -107,13 +108,15 @@ class _HomeScreenState extends State<HomeScreen> {
 
             // COFFEE GRID
             _cachedCoffees.isEmpty
-                ? const SliverToBoxAdapter(
+                ? SliverToBoxAdapter(
                     child: Padding(
-                      padding: EdgeInsets.all(40.0),
+                      padding: const EdgeInsets.all(40.0),
                       child: Center(
                         child: Text(
                           "No coffee found!",
-                          style: TextStyle(fontFamily: 'Sora'),
+                          style: TextStyle(
+                            fontFamily: GoogleFonts.sora().fontFamily,
+                          ),
                         ),
                       ),
                     ),

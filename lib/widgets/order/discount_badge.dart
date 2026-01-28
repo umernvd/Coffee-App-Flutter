@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class DiscountBadge extends StatelessWidget {
   const DiscountBadge({super.key});
@@ -17,14 +18,14 @@ class DiscountBadge extends StatelessWidget {
         children: [
          Image.asset("assets/icons/discount.png", width: 16, height: 16),
           const SizedBox(width: 12),
-          const Expanded(
+          Expanded(
             child: Text(
               "1 Discount is Applied",
               style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
-                color: Color(0xFFC67C4E),
-                fontFamily: 'Sora',
+                color: const Color(0xFFC67C4E),
+                fontFamily: GoogleFonts.sora().fontFamily,
               ),
             ),
           ),

@@ -2,6 +2,7 @@
 
 import 'package:coffee_app/screens/main_wrapper.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../widgets/auth/custom_text_field.dart';
 import '../../widgets/auth/auth_button.dart';
 
@@ -144,10 +145,10 @@ class _SignupScreenState extends State<SignupScreen> {
                         Expanded(
                           child: RichText(
                             text: TextSpan(
-                              style: const TextStyle(
-                                fontFamily: 'Sora',
+                              style: TextStyle(
+                                fontFamily: GoogleFonts.sora().fontFamily,
                                 fontSize: 12,
-                                color: Color(0xFF000000),
+                                color: const Color(0xFF000000),
                               ),
                               children: [
                                 const TextSpan(text: "I agree to the "),
@@ -185,12 +186,12 @@ class _SignupScreenState extends State<SignupScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text(
+                        Text(
                           "Already have an account? ",
                           style: TextStyle(
-                            fontFamily: 'Sora',
+                            fontFamily: GoogleFonts.sora().fontFamily,
                             fontSize: 14,
-                            color: Color(0xFF000000),
+                            color: const Color(0xFF000000),
                           ),
                         ),
                         GestureDetector(
@@ -198,7 +199,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           child: Text(
                             "Login",
                             style: TextStyle(
-                              fontFamily: 'Sora',
+                              fontFamily: GoogleFonts.sora().fontFamily,
                               fontSize: 14,
                               fontWeight: FontWeight.bold,
                               color: Theme.of(context).primaryColor,

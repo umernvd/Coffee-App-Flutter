@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../models/coffee_model.dart';
 
 class OrderItemCard extends StatelessWidget {
@@ -37,20 +38,20 @@ class OrderItemCard extends StatelessWidget {
               children: [
                 Text(
                   coffee.name,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
-                    color: Color(0xFF242424),
-                    fontFamily: 'Sora',
+                    color: const Color.fromARGB(255, 0, 0, 0),
+                    fontFamily: GoogleFonts.sora().fontFamily,
                   ),
                 ),
                 const SizedBox(height: 4),
                 Text(
                   "\$ ${coffee.price}",
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 14,
-                    color: Color(0xFFC67C4E),
-                    fontFamily: 'Sora',
+                    color: const Color(0xFFC67C4E),
+                    fontFamily: GoogleFonts.sora().fontFamily,
                   ),
                 ),
               ],

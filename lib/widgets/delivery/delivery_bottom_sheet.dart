@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'delivery_progress_bar.dart';
 import 'courier_badge.dart';
 import 'courier_profile.dart';
@@ -35,22 +36,22 @@ class DeliveryBottomSheet extends StatelessWidget {
                 borderRadius: BorderRadius.circular(2.5),
               ),
             ),
-            const Text(
+            Text(
               "10 minutes left",
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
-                color: Color(0xFF242424),
-                fontFamily: 'Sora',
+                color: const Color(0xFF242424),
+                fontFamily: GoogleFonts.sora().fontFamily,
               ),
             ),
             const SizedBox(height: 6),
             RichText(
               text: TextSpan(
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 12,
-                  color: Color(0xFFA2A2A2),
-                  fontFamily: 'Sora',
+                  color: const Color(0xFFA2A2A2),
+                  fontFamily: GoogleFonts.sora().fontFamily,
                 ),
                 children: [
                   const TextSpan(text: "Delivery to "),

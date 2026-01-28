@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import '../providers/cart_provider.dart';
 import '../widgets/cart/cart_item_card.dart';
@@ -16,13 +17,13 @@ class CartScreen extends StatelessWidget {
         elevation: 0,
         centerTitle: true,
         automaticallyImplyLeading: false,
-        title: const Text(
+        title: Text(
           "Cart",
           style: TextStyle(
-            fontFamily: 'Sora',
+            fontFamily: GoogleFonts.sora().fontFamily,
             fontSize: 18,
             fontWeight: FontWeight.w600,
-            color: Color(0xFFD17842),
+            color: const Color(0xFFD17842),
           ),
         ),
       ),
@@ -34,22 +35,22 @@ class CartScreen extends StatelessWidget {
               selector: (context, provider) => provider.items.length,
               builder: (context, itemCount, child) {
                 if (itemCount == 0) {
-                  return const Center(
+                  return Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.shopping_bag_outlined,
                           size: 80,
                           color: Color(0xFFD17842),
                         ),
-                        SizedBox(height: 16),
+                        const SizedBox(height: 16),
                         Text(
                           "No item in your cart",
                           style: TextStyle(
                             fontSize: 16,
-                            fontFamily: 'Sora',
-                            color: Color(0xFF000000),
+                            fontFamily: GoogleFonts.sora().fontFamily,
+                            color: const Color(0xFF000000),
                           ),
                         ),
                       ],
@@ -93,21 +94,21 @@ class CartScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Text(
+                        Text(
                           "Total Price",
                           style: TextStyle(
                             fontSize: 16,
-                            color: Color(0xFF000000),
-                            fontFamily: 'Sora',
+                            color:const Color(0xFF000000),
+                            fontFamily: GoogleFonts.sora().fontFamily,
                           ),
                         ),
                         Text(
                           "\$ ${cart.totalPrice.toStringAsFixed(2)}",
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w600,
-                            color: Color(0xFFC67C4E),
-                            fontFamily: 'Sora',
+                            color: const Color(0xFFC67C4E),
+                            fontFamily: GoogleFonts.sora().fontFamily,
                           ),
                         ),
                       ],

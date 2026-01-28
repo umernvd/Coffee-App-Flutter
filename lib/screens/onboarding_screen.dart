@@ -1,5 +1,6 @@
 import 'dart:async'; // Required for Timer
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../models/onboarding_item.dart';
 import '../widgets/onboarding/slide_content.dart';
 import '../widgets/onboarding/progress_indicator.dart';
@@ -127,17 +128,17 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   child: Text.rich(
                     TextSpan(
                       text: "Already have an account? ",
-                      style: const TextStyle(
-                        fontFamily: 'Sora',
+                      style: TextStyle(
+                        fontFamily: GoogleFonts.sora().fontFamily,
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
-                        color: Color.fromARGB(255, 167, 167, 167),
+                        color: const Color(0xFF000000),
                       ),
                       children: [
                         TextSpan(
                           text: "Login",
                           style: TextStyle(
-                            fontFamily: 'Sora',
+                            fontFamily: GoogleFonts.sora().fontFamily,
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
                             color: Theme.of(context).primaryColor,

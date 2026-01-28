@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CourierBadge extends StatelessWidget {
   const CourierBadge({super.key});
@@ -25,7 +26,7 @@ class CourierBadge extends StatelessWidget {
             child: const Image(image: AssetImage('assets/motorbike.png')),
           ),
           const SizedBox(width: 12),
-          const Expanded(
+          Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -34,17 +35,17 @@ class CourierBadge extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
-                    color: Color(0xFF242424),
-                    fontFamily: 'Sora',
+                    color: const Color(0xFF242424),
+                    fontFamily: GoogleFonts.sora().fontFamily,
                   ),
                 ),
-                SizedBox(height: 4),
+                const SizedBox(height: 4),
                 Text(
                   "We deliver your goods to you in the shortest possible time.",
                   style: TextStyle(
                     fontSize: 12,
-                    color: Color(0xFFA2A2A2),
-                    fontFamily: 'Sora',
+                    color: const Color.fromARGB(255, 0, 0, 0),
+                    fontFamily: GoogleFonts.sora().fontFamily,
                     height: 1.5,
                   ),
                 ),

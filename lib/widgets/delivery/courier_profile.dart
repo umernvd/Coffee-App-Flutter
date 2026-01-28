@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CourierProfile extends StatelessWidget {
   const CourierProfile({super.key});
@@ -21,7 +22,7 @@ class CourierProfile extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 12),
-          const Column(
+          Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
@@ -29,17 +30,17 @@ class CourierProfile extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w600,
-                  color: Color(0xFF242424),
-                  fontFamily: 'Sora',
+                  color: const Color(0xFF242424),
+                  fontFamily: GoogleFonts.sora().fontFamily,
                 ),
               ),
-              SizedBox(height: 4),
+              const SizedBox(height: 4),
               Text(
                 "Personal Courier",
                 style: TextStyle(
                   fontSize: 12,
-                  color: Color(0xFFA2A2A2),
-                  fontFamily: 'Sora',
+                  color: const Color(0xFFA2A2A2),
+                  fontFamily: GoogleFonts.sora().fontFamily,
                 ),
               ),
             ],

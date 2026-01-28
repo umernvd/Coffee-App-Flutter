@@ -1,6 +1,7 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../models/onboarding_item.dart';
 
 class SlideContent extends StatefulWidget {
@@ -68,8 +69,8 @@ class _SlideContentState extends State<SlideContent> with AutomaticKeepAliveClie
                 Text(
                   widget.item.title,
                   textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontFamily: 'Sora',
+                  style: TextStyle(
+                    fontFamily: GoogleFonts.sora().fontFamily,
                     fontSize: 48,
                     fontWeight: FontWeight.w800,
                     color: Colors.white,
@@ -79,11 +80,11 @@ class _SlideContentState extends State<SlideContent> with AutomaticKeepAliveClie
                 Text(
                   widget.item.description,
                   textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontFamily: 'Sora',
+                  style: TextStyle(
+                    fontFamily: GoogleFonts.sora().fontFamily,
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
-                    color: Color.fromARGB(255, 255, 255, 255),
+                    color: const Color.fromARGB(255, 255, 255, 255),
                     height: 1.5,
                   ),
                 ),

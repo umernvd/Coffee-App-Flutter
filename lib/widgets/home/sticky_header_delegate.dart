@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'promo_banner.dart';
 
 class HomeStickyHeaderDelegate extends SliverPersistentHeaderDelegate {
@@ -70,7 +71,7 @@ class HomeStickyHeaderDelegate extends SliverPersistentHeaderDelegate {
                               fontSize: 14,
                               fontWeight: FontWeight.w600,
                               color: isSelected ? Colors.white : const Color(0xFF2F2D2C),
-                              fontFamily: 'Sora',
+                              fontFamily: GoogleFonts.sora().fontFamily,
                             ),
                           ),
                         ),

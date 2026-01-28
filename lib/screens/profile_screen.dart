@@ -1,6 +1,7 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../services/storage_service.dart';
 import '../widgets/profile/profile_field.dart';
 import './login_screen.dart';
@@ -89,20 +90,26 @@ class _ProfileScreenState extends State<ProfileScreen> {
       builder: (context) => AlertDialog(
         backgroundColor: Colors.white,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        title: const Text(
+        title: Text(
           "Logout",
-          style: TextStyle(fontFamily: 'Sora', fontWeight: FontWeight.bold),
+          style: TextStyle(
+            fontFamily: GoogleFonts.sora().fontFamily,
+            fontWeight: FontWeight.bold,
+          ),
         ),
-        content: const Text(
+        content: Text(
           "Are you sure you want to logout?",
-          style: TextStyle(fontFamily: 'Sora'),
+          style: TextStyle(fontFamily: GoogleFonts.sora().fontFamily),
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text(
+            child: Text(
               "Cancel",
-              style: TextStyle(color: Color(0xFF000000), fontFamily: 'Sora'),
+              style: TextStyle(
+                color: const Color(0xFF000000),
+                fontFamily: GoogleFonts.sora().fontFamily,
+              ),
             ),
           ),
           TextButton(
@@ -114,11 +121,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 (route) => false,
               );
             },
-            child: const Text(
+            child: Text(
               "Logout",
               style: TextStyle(
-                color: Color(0xFFC67C4E),
-                fontFamily: 'Sora',
+                color: const Color(0xFFC67C4E),
+                fontFamily: GoogleFonts.sora().fontFamily,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -137,13 +144,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
         elevation: 0,
         centerTitle: true,
         automaticallyImplyLeading: false,
-        title: const Text(
+        title: Text(
           "Profile",
           style: TextStyle(
-            fontFamily: 'Sora',
+            fontFamily: GoogleFonts.sora().fontFamily,
             fontSize: 18,
             fontWeight: FontWeight.w600,
-            color: Color(0xFFC67C4E),
+            color: const Color(0xFFC67C4E),
           ),
         ),
         actions: [
@@ -224,10 +231,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     borderRadius: BorderRadius.circular(16),
                   ),
                 ),
-                child: const Text(
+                child: Text(
                   "Logout",
                   style: TextStyle(
-                    fontFamily: 'Sora',
+                    fontFamily: GoogleFonts.sora().fontFamily,
                     fontSize: 18,
                     fontWeight: FontWeight.w600,
                     color: Colors.white,

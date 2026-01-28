@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class DeliveryToggle extends StatefulWidget {
   const DeliveryToggle({super.key});
@@ -49,7 +50,7 @@ class _DeliveryToggleState extends State<DeliveryToggle> {
               fontSize: 16,
               fontWeight: isActive ? FontWeight.w600 : FontWeight.normal,
               color: isActive ? Colors.white : const Color(0xFF242424),
-              fontFamily: 'Sora',
+              fontFamily: GoogleFonts.sora().fontFamily,
             ),
           ),
         ),

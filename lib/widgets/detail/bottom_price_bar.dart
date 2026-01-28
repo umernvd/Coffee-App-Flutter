@@ -1,5 +1,6 @@
 import 'package:coffee_app/models/cart_item.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../models/coffee_model.dart';
 import '../../screens/order_screen.dart';
 import '../onboarding/custom_button.dart';
@@ -21,21 +22,21 @@ class BottomPriceBar extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
+              Text(
                 "Price",
                 style: TextStyle(
                   fontSize: 14,
-                  color: Color(0xFF000000),
-                  fontFamily: 'Sora',
+                  color: const Color(0xFF000000),
+                  fontFamily: GoogleFonts.sora().fontFamily,
                 ),
               ),
               Text(
                 "\$ ${coffee.price}", // Access price directly from the object
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w600,
-                  color: Color(0xFFC67C4E),
-                  fontFamily: 'Sora',
+                  color: const Color(0xFFC67C4E),
+                  fontFamily: GoogleFonts.sora().fontFamily,
                 ),
               ),
             ],

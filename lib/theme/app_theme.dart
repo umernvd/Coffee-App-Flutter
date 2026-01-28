@@ -32,7 +32,11 @@ class AppTheme {
         foregroundColor: white,
         elevation: 0,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600, fontFamily: 'Sora'),
+        textStyle: TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.w600,
+          fontFamily: GoogleFonts.sora().fontFamily,
+        ),
       ),
     ),
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class BottomOrderBar extends StatelessWidget {
   final double totalPrice;
@@ -31,22 +32,22 @@ class BottomOrderBar extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
+                      Text(
                         "Cash/Wallet",
                         style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w600,
-                          color: Color(0xFF242424),
-                          fontFamily: 'Sora',
+                          color: const Color.fromARGB(255, 0, 0, 0),
+                          fontFamily: GoogleFonts.sora().fontFamily,
                         ),
                       ),
                       Text(
                         "\$ ${totalPrice.toStringAsFixed(2)}",
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w600,
-                          color: Color(0xFFC67C4E),
-                          fontFamily: 'Sora',
+                          color: const Color(0xFFC67C4E),
+                          fontFamily: GoogleFonts.sora().fontFamily,
                         ),
                       ),
                     ],
@@ -66,13 +67,13 @@ class BottomOrderBar extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFFC67C4E),
                              ),
-              child: const Text(
+              child: Text(
                 "Order",
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
                   color: Colors.white,
-                  fontFamily: 'Sora',
+                  fontFamily: GoogleFonts.sora().fontFamily,
                 ),
               ),
             ),
