@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class AppTheme {
-  // Private constructor to prevent instantiation
   AppTheme._();
 
   static const Color primaryColor = Color(0xFFC67C4E);
@@ -38,5 +37,15 @@ class AppTheme {
 
     // Icon Styles
     iconTheme: const IconThemeData(color: textPrimary),
+
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+      backgroundColor: white,
+      elevation: 10,
+      selectedItemColor: primaryColor,      
+      unselectedItemColor: Color(0xFF000000),   
+      showSelectedLabels: false,            
+      showUnselectedLabels: false,
+      type: BottomNavigationBarType.fixed,
+    ),
   );
 }
