@@ -13,12 +13,16 @@ class HomeStickyHeaderDelegate extends SliverPersistentHeaderDelegate {
     required this.onCategorySelected,
   });
 
-  // Height Calculation: 
-  // Banner (150) + Spacing (20) + Categories (30) + Bottom Padding (20) = 220
-  final double _height = 220.0;
+  // Height Calculation:
+  // Top Padding (22) + Banner (140) + Spacing (20) + Categories (30) + Bottom Padding (20) = 232
+  final double _height = 232.0;
 
   @override
-  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+  Widget build(
+    BuildContext context,
+    double shrinkOffset,
+    bool overlapsContent,
+  ) {
     return Container(
       color: const Color(0xFFF9F9F9), // white background for the bottom half
       child: Stack(
@@ -29,23 +33,34 @@ class HomeStickyHeaderDelegate extends SliverPersistentHeaderDelegate {
             top: 0,
             left: 0,
             right: 0,
-            height: 75, // Covers top 50% of the banner (150px / 2 = 75px)
+            height:
+                97, // Covers top 50% of the banner (140px / 2 = 70px) + top padding (22px) + 5px extra
             child: Container(
-             color: const Color.fromARGB(255, 32, 32, 32), // Matches bottom of Gradient
+              color: const Color.fromARGB(
+                255,
+                32,
+                32,
+                32,
+              ), // Matches bottom of Gradient
             ),
           ),
 
           // Banner + Categories
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24),
+            padding: const EdgeInsets.fromLTRB(
+              29,
+              22,
+              29,
+              0,
+            ), // Added 12px top padding
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 // Promo Banner (stays on top of the black extension)
                 const PromoBanner(),
-                
+
                 const SizedBox(height: 20),
-                
+
                 // Categories
                 SizedBox(
                   height: 30,
@@ -62,7 +77,9 @@ class HomeStickyHeaderDelegate extends SliverPersistentHeaderDelegate {
                           padding: const EdgeInsets.symmetric(horizontal: 10),
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
-                            color: isSelected ? const Color(0xFFC67C4E) : Colors.white,
+                            color: isSelected
+                                ? const Color(0xFFC67C4E)
+                                : Colors.white,
                             borderRadius: BorderRadius.circular(6),
                           ),
                           child: Text(
@@ -70,7 +87,9 @@ class HomeStickyHeaderDelegate extends SliverPersistentHeaderDelegate {
                             style: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w600,
-                              color: isSelected ? Colors.white : const Color(0xFF2F2D2C),
+                              color: isSelected
+                                  ? Colors.white
+                                  : const Color(0xFF2F2D2C),
                               fontFamily: GoogleFonts.sora().fontFamily,
                             ),
                           ),

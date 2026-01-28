@@ -12,7 +12,7 @@ class PromoBanner extends StatelessWidget {
       width: double.infinity,
       height: 140,
       decoration: BoxDecoration(
-        color: const Color(0xFFC67C4E).withOpacity(0.8), // Fallback color
+        color: const Color(0xFFC67C4E).withOpacity(0.8),
         borderRadius: BorderRadius.circular(16),
         image: const DecorationImage(
           image: AssetImage('assets/banner.png'),
@@ -27,7 +27,7 @@ class PromoBanner extends StatelessWidget {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
               decoration: BoxDecoration(
-                color: const Color(0xFFED5151), // Red Badge
+                color: const Color(0xFFED5151),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Text(
