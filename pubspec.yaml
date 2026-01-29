@@ -1,25 +1,25 @@
 name: coffee_app
-description: A new Flutter project.
-publish_to: 'none'
+description: Coffee shop mobile app for a seamless coffee ordering experience.
+publish_to: "none"
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.10.4 <4.0.0'
+  sdk: ">=3.10.4 <4.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
   # Core Packages
-  provider: ^6.1.1          # State Management
-  google_fonts: ^6.1.0      # Typography
-  cupertino_icons: ^1.0.6   # iOS Icons
+  provider: ^6.1.1 # State Management
+  google_fonts: ^6.1.0 # Typography
+  cupertino_icons: ^1.0.6 # iOS Icons
   shared_preferences: ^2.2.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   # Dev Tools
-  flutter_lints: ^4.0.0     # Linter
+  flutter_lints: ^4.0.0 # Linter
   flutter_launcher_icons: ^0.13.1 # App Icon Generator
 
 flutter:
@@ -27,8 +27,8 @@ flutter:
 
   # Assets
   assets:
-    - assets/               # Loads images like espresso.png
-    - assets/icons/         # Loads filter.png, search.png
+    - assets/ # Loads images like espresso.png
+    - assets/icons/ # Loads filter.png, search.png
 
 # App Icon Configuration
 flutter_launcher_icons:
